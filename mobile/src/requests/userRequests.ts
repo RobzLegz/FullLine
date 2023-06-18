@@ -1,18 +1,13 @@
 import { Dispatch } from "@reduxjs/toolkit";
 import { headers } from "../constants/headers";
-import {
-  setInfo,
-  setPushNotificationToken,
-  setToken,
-} from "../redux/slices/userSlice";
+import { setInfo, setToken } from "../redux/slices/userSlice";
 import {
   getItemFromStore,
   removeItemFromStore,
   saveItem,
 } from "../utils/storeOptions";
 import axios from "axios";
-import { REGISTER_PUSH_NOTIFICATIONS_ROUTE, USER_INFO_ROUTE } from "./routes";
-import { setNotification } from "../redux/slices/notificationSlice";
+import { USER_INFO_ROUTE } from "./routes";
 
 export const authUser = async ({ dispatch }: { dispatch: Dispatch }) => {
   let end = false;
@@ -68,37 +63,4 @@ export const authUser = async ({ dispatch }: { dispatch: Dispatch }) => {
 
     await saveItem("token", { token: token });
   });
-};
-
-export const registerForPushNotifications = async ({
-  token,
-  pushToken,
-  dispatch,
-}: {
-  pushToken: string;
-  token: string;
-  dispatch: Dispatch;
-}) => {
-  const headrs = headers(token);
-
-  console.log("Registering for push notifications", pushToken);
-
-  await axios
-    .post(REGISTER_PUSH_NOTIFICATIONS_ROUTE, { token: pushToken }, headrs)
-    .then((res) => {
-      dispatch(setPushNotificationToken(res.data.token));
-    })
-    .catch((err) => {
-      if (!err.response) {
-        return console.log(err);
-      }
-
-      const message: string = err.response.data.err;
-      dispatch(
-        setNotification({
-          type: "error",
-          message: message,
-        })
-      );
-    });
 };
