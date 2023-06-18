@@ -6,12 +6,10 @@ export const categoryRouter = express.Router();
 
 categoryRouter
   .route("/")
-  .post(authAdmin, categoryCtrl.create)
-  .get(authAdmin, categoryCtrl.getAll);
+  .get(authAdmin, categoryCtrl.getAll)
+  .post(authAdmin, categoryCtrl.create);
+
 categoryRouter
   .route("/:id")
   .put(authAdmin, categoryCtrl.update)
-  .delete(authAdmin, categoryCtrl.delete)
-  .get(authAdmin, categoryCtrl.getById);
-
-categoryRouter.route("/merge").post(authAdmin, categoryCtrl.merge);
+  .delete(authAdmin, categoryCtrl.delete);
