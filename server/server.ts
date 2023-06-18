@@ -4,18 +4,12 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
 import * as dotenv from "dotenv";
-import { userRouter } from "./api/user/router";
-import { imageRouter } from "./api/image/router";
-import { categoryRouter } from "./api/category/router";
 
 dotenv.config();
 
 const corsCredentials = {
   credentials: true,
-  origin:
-    process.env.NODE_ENV === "production"
-      ? ["https://spotloc.lv", "https://cms.spotloc.lv"]
-      : ["http://localhost:3000"],
+  origin: process.env.NODE_ENV === "production" ? "" : "http://localhost:3000",
 };
 
 const app = express();
@@ -29,9 +23,17 @@ app.use(
   })
 );
 
+import { userRouter } from "./api/user/router";
+import { imageRouter } from "./api/image/router";
+import { categoryRouter } from "./api/category/router";
+
 app.use("/api/user", userRouter);
 app.use("/api/image", imageRouter);
 app.use("/api/category", categoryRouter);
+
+import { categoryRouter as adminCategoryRouter } from "./api/admin/category/router";
+
+app.use("/api/admin/category", adminCategoryRouter);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
