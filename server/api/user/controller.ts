@@ -34,10 +34,6 @@ export const userCtrl = {
               last_login: new Date(),
             },
             select: {
-              saved_event_ids: true,
-              push_notification_token: true,
-              cityId: true,
-              countryId: true,
               id: true,
             },
           });
@@ -59,9 +55,7 @@ export const userCtrl = {
       const user = await prisma.user.create({
         data: {},
         select: {
-          saved_event_ids: true,
           id: true,
-          push_notification_token: true,
         },
       });
 
