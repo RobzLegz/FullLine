@@ -19,6 +19,7 @@ export const categoryCtrl = {
           title: true,
           description: true,
           icon: true,
+          color: true,
         },
       });
 
@@ -51,7 +52,7 @@ export const categoryCtrl = {
       }
 
       const categories = await prisma.category.findMany({
-        select: { id: true, title: true, icon: true },
+        select: { id: true, title: true, icon: true, color: true },
       });
 
       const images = await prisma.image.findMany({
