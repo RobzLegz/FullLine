@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import prisma from "../../../src/lib/prisma";
-import { createRefreshToken } from "../../../src/utils/generateToken";
+import prisma from "../../src/lib/prisma";
+import { createRefreshToken } from "../../src/utils/generateToken";
 import jwt from "jsonwebtoken";
 
 export const userCtrl = {
@@ -74,57 +74,6 @@ export const userCtrl = {
         user: user,
         token: refresh_token,
       });
-    } catch (err: any) {
-      return res.status(500).json({ err: err.message });
-    }
-  },
-  registerForPushNotifications: async (req: Request, res: Response) => {
-    try {
-      if (!req.user_id) {
-        return res.status(401).json({
-          msg: "Unauthorized",
-        });
-      }
-
-      const { token } = req.body;
-
-      await prisma.user.update({
-        where: { id: req.user_id },
-        data: { push_notification_token: token },
-      });
-
-      res.json({
-        msg: "Registered for push notifications",
-        token,
-      });
-    } catch (err: any) {
-      return res.status(500).json({ err: err.message });
-    }
-  },
-  changeCity: async (req: Request, res: Response) => {
-    try {
-      const { cityId } = req.body;
-
-      await prisma.user.update({
-        where: { id: req.user_id },
-        data: { cityId: cityId },
-      });
-
-      res.json({ msg: "City updated" });
-    } catch (err: any) {
-      return res.status(500).json({ err: err.message });
-    }
-  },
-  changeCountry: async (req: Request, res: Response) => {
-    try {
-      const { countryId } = req.body;
-
-      await prisma.user.update({
-        where: { id: req.user_id },
-        data: { countryId: countryId },
-      });
-
-      res.json({ msg: "Country updated" });
     } catch (err: any) {
       return res.status(500).json({ err: err.message });
     }

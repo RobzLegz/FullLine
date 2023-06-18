@@ -7,271 +7,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Search {
-  id           String     @id @default(auto()) @map("_id") @db.ObjectId
-  query        String?
-  city         String?    @db.ObjectId
-  start_date   DateTime?
-  end_date     DateTime?
-  categories   Category[] @relation(fields: [category_ids], references: [id])
-  user         User       @relation(fields: [user_id], references: [id])
-  category_ids String[]   @default([]) @db.ObjectId
-  user_id      String     @db.ObjectId
-  created_at   DateTime   @default(now())
-}
-
-model Partner {
-  id           String  @id @default(auto()) @map("_id") @db.ObjectId
-  name         String
-  email        String
-  phone_number String?
-  website_url  String?
-  password     String
-  description  String?
-  logo         String?
-  verified     Boolean @default(false)
-  events       Event[]
-  spots        Spot[]
-  views        View[]
-}
-
 model User {
-  id                       String         @id @default(auto()) @map("_id") @db.ObjectId
-  email                    String?
-  name                     String?
-  password                 String?
-  avatar                   String?
-  username                 String?
-  bio                      String?
-  last_login               DateTime?      @default(now())
-  email_verified           Boolean        @default(false)
-  phone_number_verified    Boolean        @default(false)
-  subscribed_to_newsletter Boolean        @default(false)
-  phone_number             String?
-  role                     Int            @default(0)
-  created_at               DateTime       @default(now())
-  updated_at               DateTime       @updatedAt
-  saved_event_ids          String[]       @db.ObjectId
-  events                   String[]       @default([])
-  cityId                   String         @default("63f0dd5f10aa3c717cb9a21b") @db.ObjectId
-  countryId                String         @default("64450f18e843597154f1d832") @db.ObjectId
-  push_notification_token  String?
-  school                   String?
-  grade                    String?
-  question                 String?
-  settings                 Settings?
-  city                     City           @relation(fields: [cityId], references: [id])
-  country                  Country        @relation(fields: [countryId], references: [id])
-  saved_events             Event[]        @relation(fields: [saved_event_ids], references: [id])
-  search_history           Search[]
-  views                    View[]
-  website_visits           WebsiteVisit[]
-}
-
-model View {
   id         String    @id @default(auto()) @map("_id") @db.ObjectId
-  user       User?     @relation(fields: [userId], references: [id])
-  userId     String?   @db.ObjectId
-  event      Event?    @relation(fields: [eventId], references: [id])
-  eventId    String?   @db.ObjectId
-  spot       Spot?     @relation(fields: [spotId], references: [id])
-  spotId     String?   @db.ObjectId
-  partner    Partner?  @relation(fields: [partnerId], references: [id])
-  partnerId  String?   @db.ObjectId
-  category   Category? @relation(fields: [categoryId], references: [id])
-  categoryId String?   @db.ObjectId
+  email      String?
+  password   String?
+  username   String?
+  last_login DateTime? @default(now())
+  role       Int       @default(0)
+  images     Image[]
   created_at DateTime  @default(now())
-}
-
-model WebsiteVisit {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  user       User?    @relation(fields: [userId], references: [id])
-  userId     String?  @db.ObjectId
-  event      Event?   @relation(fields: [eventId], references: [id])
-  eventId    String?  @db.ObjectId
-  spot       Spot?    @relation(fields: [spotId], references: [id])
-  spotId     String?  @db.ObjectId
-  created_at DateTime @default(now())
+  updated_at DateTime  @updatedAt
 }
 
 model Category {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  name        String   @unique
-  type        String   @default("Event")
-  en_name     String?
-  color       String   @default("#7a00cc")
-  description String?
-  verified    Boolean  @default(false)
-  keywords    String[] @default([])
-  icon        String?
-  spot_ids    String[] @db.ObjectId
-  event_ids   String[] @db.ObjectId
-  search_ids  String[] @db.ObjectId
-  events      Event[]  @relation(fields: [event_ids], references: [id])
-  searches    Search[] @relation(fields: [search_ids], references: [id])
-  spots       Spot[]   @relation(fields: [spot_ids], references: [id])
-  views       View[]
-}
-
-model Spot {
-  id                 String            @id @default(auto()) @map("_id") @db.ObjectId
-  name               String
-  description        String?
-  category_ids       String[]          @db.ObjectId
-  cityId             String?           @db.ObjectId
-  website_url        String?
-  email              String?
-  phone_number       String?
-  priority           Int               @default(0)
-  partnerId          String?           @db.ObjectId
-  verified           Boolean           @default(false)
-  spotloc_url        String?
-  banner             EventImage?
-  partner            Partner?          @relation(fields: [partnerId], references: [id])
-  location           Location
-  products           Product[]
-  categories         Category[]        @relation(fields: [category_ids], references: [id])
-  working_hours      WorkingHours?
-  cover              EventImage?
-  images             EventImage[]
-  city               City?             @relation(fields: [cityId], references: [id])
-  events             Event[]
-  product_categories ProductCategory[]
-  created_at         DateTime          @default(now())
-  updated_at         DateTime          @updatedAt
-  WebsiteVisit       WebsiteVisit[]
-  views              View[]
-}
-
-model Event {
-  id              String         @id @default(auto()) @map("_id") @db.ObjectId
-  title           String
-  price           Float?
-  start_date      DateTime?
-  end_date        DateTime?
-  start_time      String?
-  end_time        String?
-  ticket_url      String?
-  website_urls    String[]
-  info            String[]
-  event_url       String?
-  priority        Int            @default(0)
-  all_dates       EventDate[]
-  location        Location
-  images          EventImage[]
-  cover           EventImage?
-  created_at      DateTime       @default(now())
-  verified        Boolean        @default(false)
-  updated_at      DateTime       @updatedAt
-  category_ids    String[]       @db.ObjectId
-  saved_users_ids String[]       @db.ObjectId
-  saved_users     User[]         @relation(fields: [saved_users_ids], references: [id])
-  categories      Category[]     @relation(fields: [category_ids], references: [id])
-  city            City?          @relation(fields: [cityId], references: [id])
-  partner         Partner?       @relation(fields: [partnerId], references: [id])
-  cityId          String?        @db.ObjectId
-  partnerId       String?        @db.ObjectId
-  country         Country?       @relation(fields: [countryId], references: [id])
-  countryId       String?        @db.ObjectId
-  event_views     View[]
-  view_count      Int            @default(0)
-  website_visits  WebsiteVisit[]
-  spot            Spot?          @relation(fields: [spotId], references: [id])
-  spotId          String?        @db.ObjectId
-}
-
-model Country {
-  id       String  @id @default(auto()) @map("_id") @db.ObjectId
-  name     String  @unique
-  verified Boolean @default(false)
-  en_name  String?
-  short    String?
-  flag     String?
-  cities   City[]
-  users    User[]
-  events   Event[]
-}
-
-model City {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String   @unique
-  events    Event[]
-  priority  Int      @default(0)
-  lat       Float?
-  lng       Float?
-  verified  Boolean  @default(false)
-  countryId String?  @db.ObjectId
-  country   Country? @relation(fields: [countryId], references: [id])
-  spots     Spot[]
-  users     User[]
-}
-
-model Product {
-  id          String           @id @default(auto()) @map("_id") @db.ObjectId
+  icon        String
   title       String
   description String
-  spotId      String?          @db.ObjectId
-  price       Float
-  categoryId  String?          @db.ObjectId
-  cover       EventImage?
-  images      EventImage[]
-  spot        Spot?            @relation(fields: [spotId], references: [id])
-  category    ProductCategory? @relation(fields: [categoryId], references: [id])
+  image_ids   String[] @db.ObjectId
+  images      Image[]  @relation(fields: [image_ids], references: [id])
 }
 
-model ProductCategory {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  en_name     String?
-  color       String    @default("#7a00cc")
-  description String?
-  spotId      String?   @db.ObjectId
-  spot        Spot?     @relation(fields: [spotId], references: [id])
-  products    Product[]
-}
-
-type EventDate {
-  date DateTime
-  time String?
-}
-
-type Location {
-  city     String?
-  country  String?
-  address  String?
-  location String?
-  lat      Float?
-  lng      Float?
-  geo      GeoPoint?
-}
-
-type GeoPoint {
-  type        String
-  coordinates Float[]
-}
-
-type EventImage {
-  src String
-  alt String?
-}
-
-type WorkingHours {
-  monday    WorkingHour
-  tuesday   WorkingHour
-  wednesday WorkingHour
-  thursday  WorkingHour
-  friday    WorkingHour
-  saturday  WorkingHour
-  sunday    WorkingHour
-}
-
-type WorkingHour {
-  start_time String
-  end_time   String
-}
-
-type Settings {
-  theme              String  @default("Dark")
-  push_notifications Boolean @default(true)
-  language           String  @default("LV")
+model Image {
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  categories   Category[] @relation(fields: [category_ids], references: [id])
+  category_ids String[]   @db.ObjectId
+  user         User       @relation(fields: [userId], references: [id])
+  userId       String     @db.ObjectId
 }
