@@ -1,25 +1,23 @@
 import axios from "axios";
-import { setCities } from "../redux/slices/appSlice";
+import { setCategories } from "../redux/slices/appSlice";
 import { setNotification } from "../redux/slices/notificationSlice";
-import { CITY_BASE } from "./routes";
+import { CATEGORY_BASE } from "./routes";
 import { Dispatch } from "@reduxjs/toolkit";
 import { headers } from "../constants/headers";
 
-export const getCities = async ({
+export const getCategories = async ({
   dispatch,
   token,
-  country = "64450f18e843597154f1d832",
 }: {
   dispatch: Dispatch;
   token: string | null;
-  country: string | null;
 }) => {
   const headrs = headers(token);
 
   await axios
-    .get(`${CITY_BASE}/${country}`, headrs)
+    .get(CATEGORY_BASE, headrs)
     .then((res) => {
-      dispatch(setCities(res.data.cities));
+      dispatch(setCategories(res.data));
     })
     .catch((err) => {
       if (!err.response) {

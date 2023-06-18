@@ -10,7 +10,7 @@ import { H1, Strong } from "../../styles/text";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { formatCityName } from "../../utils/formatCityName";
 import { accent3, white } from "../../constants/colors";
-import { getCities } from "../../requests/cityRequests";
+import { getCities } from "../../requests/categoryRequests";
 import { AppInfo, selectApp, setPopmodal } from "../../redux/slices/appSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser, UserInfo } from "../../redux/slices/userSlice";

@@ -21,7 +21,7 @@ import PullupModal from "../notification/PullupModal";
 import { filterStyle } from "../home/HomeContainer";
 import { setNotification } from "../../redux/slices/notificationSlice";
 import { selectUser, UserInfo } from "../../redux/slices/userSlice";
-import { getCities } from "../../requests/cityRequests";
+import { getCities } from "../../requests/categoryRequests";
 import { formatDate } from "../../utils/formatDate";
 import { getCityCategories } from "../../requests/categoryRequests";
 import { MemoryInfo, selectMemory } from "../../redux/slices/memorySlice";
