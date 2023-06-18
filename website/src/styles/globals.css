@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  * {
+    @apply box-border p-0 m-0;
+  }
+
+  main {
+    @apply bg-white;
+  }
+
+  h1 {
+    @apply text-3xl md:text-4xl xl:text-5xl font-bold;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl my-1 font-bold;
+  }
+
+  h3 {
+    @apply text-2xl font-bold;
+  }
+
+  h4 {
+    @apply text-xl font-semibold;
+  }
+
+  p {
+    @apply text-base;
+  }
+
+  input {
+    @apply transition-all duration-200;
+  }
+
+  button {
+    @apply transition-all duration-300;
+  }
+
+  td {
+    @apply border p-1;
+  }
+
+  .page {
+    @apply w-full flex flex-col items-center justify-start;
+  }
+
+  .cotact_button {
+    @apply text-white w-11/12 max-w-[320px] h-10 md:h-12 rounded-lg text-xl mt-8 shadow-xl transition-colors duration-300 bg-gradient-to-r from-violet-500 to-fuchsia-500 hover:via-violet-500 hover:to-fuchsia-500;
+  }
+
+  button {
+    @apply disabled:opacity-75 flex items-center justify-center;
+  }
+
+  input,
+  button,
+  textarea {
+    @apply outline-accent;
+  }
+
+  a {
+    @apply outline-accent duration-200 transition-opacity;
+  }
+
+  .form_input {
+    @apply w-full h-10 px-2 rounded-sm bg-white text-gray-800 border border-[#6e6e6e] placeholder:text-gray-400;
+  }
+
+  .form_button {
+    @apply h-10 rounded-sm mt-2 w-48 bg-accent text-white flex items-center justify-center disabled:opacity-75;
+  }
+
+  .form_label {
+    @apply text-primary-800 text-sm;
+  }
+}
+
+main {
+  font-family: var(--inter-font);
+}
+
+.thinktank-page {
+  font-family: var(--radjhani-font);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+}
+
+.hidden_bar::-webkit-scrollbar {
+  display: none;
+}
+
+.hidden_bar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

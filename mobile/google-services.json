@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1092187314880",
+    "project_id": "spotloc-b615d",
+    "storage_bucket": "spotloc-b615d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092187314880:android:98aa6a5cafd9529322ab25",
+        "android_client_info": {
+          "package_name": "com.spotloc.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1092187314880-ve222tfchigvf8mvn3brhnmp6qi7r9hc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYVrCCRGETCqynivKM_oC9XFo-vnrJjLc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1092187314880-ve222tfchigvf8mvn3brhnmp6qi7r9hc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

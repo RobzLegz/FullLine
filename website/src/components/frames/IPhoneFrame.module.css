@@ -1,0 +1,22 @@
+.iphoneX {
+  position: relative;
+  border-radius: 15px;
+  box-shadow: 0px 0px 0px 5px #1f1f1f, 0px 0px 0px 7px #191919,
+    0px 0px 0px 12px #111;
+}
+
+.iphoneX :before,
+.iphoneX :after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.iphoneX :before {
+  top: -1px;
+  width: 56%;
+  height: 15px;
+  background-color: #1f1f1f;
+  border-radius: 0px 0px 15px 15px;
+}
