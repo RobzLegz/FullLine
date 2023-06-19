@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import HomeScreen from "../screens/Home";
+import CameraScreen from "../screens/Camera";
 import { useDispatch, useSelector } from "react-redux";
 import { AppInfo, selectApp } from "../redux/slices/appSlice";
 import { selectUser, UserInfo } from "../redux/slices/userSlice";
@@ -76,6 +77,12 @@ const Navigator = () => {
       <Stack.Screen
         name="Home"
         component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="Camera"
+        component={CameraScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
