@@ -17,7 +17,7 @@ import ImageTakenContainer from "./ImageTakenContainer";
 import { Asset } from "expo-asset";
 import { manipulateAsync, FlipType, SaveFormat } from "expo-image-manipulator";
 
-const { height, width } = Dimensions.get("window");
+export const { height, width } = Dimensions.get("window");
 
 export const cameraHeight = Math.round((width * 16) / 9);
 
