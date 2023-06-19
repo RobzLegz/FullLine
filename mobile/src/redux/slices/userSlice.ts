@@ -28,62 +28,10 @@ export const userSlice: any = createSlice({
         info: action.payload,
       };
     },
-    setPushNotificationToken: (
-      state,
-      action: RdxAction<string | null | undefined>
-    ) => {
-      if (!state.info || !action.payload) {
-        return state;
-      }
-
-      return {
-        ...state,
-        info: {
-          ...state.info,
-          push_notification_token: action.payload,
-        },
-      };
-    },
-    setSavedEventIds: (state, action: RdxAction<string[] | string>) => {
-      if (!state.info) {
-        return;
-      }
-
-      if (typeof action.payload === "string") {
-        if (state.info.saved_event_ids.some((id) => id === action.payload)) {
-          return {
-            ...state,
-            info: {
-              ...state.info,
-              saved_event_ids: state.info.saved_event_ids.filter(
-                (id) => id !== action.payload
-              ),
-            },
-          };
-        }
-
-        return {
-          ...state,
-          info: {
-            ...state.info,
-            saved_event_ids: [...state.info.saved_event_ids, action.payload],
-          },
-        };
-      }
-
-      return {
-        ...state,
-        info: {
-          ...state.info,
-          saved_event_ids: action.payload,
-        },
-      };
-    },
   },
 });
 
-export const { setToken, setInfo, setSavedEventIds, setPushNotificationToken } =
-  userSlice.actions;
+export const { setToken, setInfo } = userSlice.actions;
 
 export const selectUser = (state: any) => state.user;
 
