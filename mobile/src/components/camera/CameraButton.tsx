@@ -47,3 +47,5 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
 });
+
+export const cameraButtonStyle = styles.container;
