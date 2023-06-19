@@ -69,9 +69,15 @@ const Navigator = () => {
     return null;
   }
 
+  console.log(appInfo.categories);
+
   return (
     <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 };

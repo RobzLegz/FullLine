@@ -58,7 +58,6 @@ export const categoryCtrl = {
       const images = await prisma.image.findMany({
         where: {
           userId: req.user_id,
-          category_ids: { hasSome: categories.map((c) => c.id) },
         },
         select: {
           category_ids: true,
@@ -78,9 +77,25 @@ export const categoryCtrl = {
           categoryImageLength / (allImageLength / 100)
         );
 
+        if (!percentage) {
+          return {
+            ...c,
+            height: 0,
+          };
+        }
+
+        const height = Math.floor((80 * percentage) / 100 - 20);
+
+        if (!height) {
+          return {
+            ...c,
+            height: 0,
+          };
+        }
+
         return {
           ...c,
-          percentage,
+          height,
         };
       });
 
