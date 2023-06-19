@@ -14,6 +14,8 @@ import { white } from "../../constants/colors";
 import { useNavigation } from "@react-navigation/native";
 import { cameraButtonStyle } from "./CameraButton";
 import ImageTakenContainer from "./ImageTakenContainer";
+import { Asset } from "expo-asset";
+import { manipulateAsync, FlipType, SaveFormat } from "expo-image-manipulator";
 
 const { height, width } = Dimensions.get("window");
 
@@ -161,7 +163,11 @@ const BottomControls: React.FC<{
         />
       </TouchableOpacity>
 
-      <CameraScreenButton cameraRef={cameraRef} setImage={setImage} />
+      <CameraScreenButton
+        cameraRef={cameraRef}
+        setImage={setImage}
+        type={type}
+      />
 
       <TouchableOpacity onPress={chageType} style={{ zIndex: 4 }}>
         <Octicons name="arrow-switch" size={30} color={white} />
@@ -172,15 +178,25 @@ const BottomControls: React.FC<{
 
 const CameraScreenButton: React.FC<{
   cameraRef: React.RefObject<Camera>;
+  type: string;
   setImage: React.Dispatch<React.SetStateAction<string | null>>;
-}> = ({ cameraRef, setImage }) => {
+}> = ({ cameraRef, setImage, type }) => {
   const takePicture = async () => {
     if (cameraRef.current) {
       try {
         const data = await cameraRef.current.takePictureAsync({
           isImageMirror: true,
         });
-        console.log(data);
+
+        if (type === "front") {
+          const manipResult = await manipulateAsync(data.uri, [
+            { flip: FlipType.Horizontal },
+          ]);
+          setImage(manipResult.uri);
+
+          return;
+        }
+
         setImage(data.uri);
       } catch (error) {
         console.log(error);
