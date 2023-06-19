@@ -4,12 +4,6 @@ import prisma from "../../../src/lib/prisma";
 export const categoryCtrl = {
   getAll: async (req: Request, res: Response) => {
     try {
-      if (!req.user_id) {
-        return res.status(401).json({
-          message: "Unauthorized",
-        });
-      }
-
       const categories = await prisma.category.findMany({
         select: {
           id: true,
@@ -27,12 +21,6 @@ export const categoryCtrl = {
   },
   create: async (req: Request, res: Response) => {
     try {
-      if (!req.user_id) {
-        return res.status(401).json({
-          message: "Unauthorized",
-        });
-      }
-
       const {
         color,
         icon,
@@ -72,12 +60,6 @@ export const categoryCtrl = {
   },
   update: async (req: Request, res: Response) => {
     try {
-      if (!req.user_id) {
-        return res.status(401).json({
-          message: "Unauthorized",
-        });
-      }
-
       const { id: categoryId } = req.params;
 
       const {
@@ -111,12 +93,6 @@ export const categoryCtrl = {
   },
   delete: async (req: Request, res: Response) => {
     try {
-      if (!req.user_id) {
-        return res.status(401).json({
-          message: "Unauthorized",
-        });
-      }
-
       const { id: categoryId } = req.params;
 
       await prisma.category.delete({

@@ -10,7 +10,7 @@ export interface ExUser extends User {
 
 export interface ExCategory extends Category {
   images?: ExImage[];
-  percentage?: number;
+  height?: number;
 }
 
 export interface ExImage extends ImageType {

@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { StyleSheet, Text } from "react-native";
-import { black, white } from "../constants/colors";
+import { black, primary900, white } from "../constants/colors";
 
 export const Small = memo((props: any) => {
   return (
@@ -50,26 +50,26 @@ const styles = StyleSheet.create({
   small: {
     fontSize: 13,
     fontFamily: "Roboto_400Regular",
-    color: white,
+    color: primary900,
   },
   p: {
     fontSize: 14,
     fontFamily: "Roboto_400Regular",
-    color: white,
+    color: primary900,
   },
   strong: {
     fontSize: 16,
     fontFamily: "Roboto_500Medium",
-    color: white,
+    color: primary900,
   },
   h3: {
     fontSize: 20,
     fontFamily: "Roboto_700Bold",
-    color: white,
+    color: primary900,
   },
   h1: {
     fontSize: 28,
     fontFamily: "Roboto_700Bold",
-    color: white,
+    color: primary900,
   },
 });

@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import prisma from "../../src/lib/prisma";
 import { createRefreshToken } from "../../src/utils/generateToken";
 import jwt from "jsonwebtoken";
+import { API_VERSION } from "../../server";
 
 export const userCtrl = {
   getUserInfo: async (req: Request, res: Response) => {
@@ -46,6 +47,7 @@ export const userCtrl = {
             return res.json({
               msg: "Logged in",
               user: user,
+              apiVersion: API_VERSION,
               // token: refresh_token,
             });
           }
@@ -67,6 +69,7 @@ export const userCtrl = {
         msg: "Logged in",
         user: user,
         token: refresh_token,
+        apiVersion: API_VERSION,
       });
     } catch (err: any) {
       return res.status(500).json({ err: err.message });

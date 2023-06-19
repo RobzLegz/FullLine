@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { primary900 } from "../constants/colors";
+import { white } from "../constants/colors";
 
 const screenStyles = StyleSheet.create({
   basicScreen: {
@@ -9,7 +9,7 @@ const screenStyles = StyleSheet.create({
     alignItems: "center",
     position: "relative",
     overflow: "hidden",
-    backgroundColor: primary900,
+    backgroundColor: white,
   },
 });
 
