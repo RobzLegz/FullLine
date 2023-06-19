@@ -26,10 +26,12 @@ app.use(
 import { userRouter } from "./api/user/router";
 import { imageRouter } from "./api/image/router";
 import { categoryRouter } from "./api/category/router";
+import { uploadRouter } from "./api/upload/router";
 
 app.use("/api/user", userRouter);
 app.use("/api/image", imageRouter);
 app.use("/api/category", categoryRouter);
+app.use("/api/upload", uploadRouter);
 
 import { categoryRouter as adminCategoryRouter } from "./api/admin/category/router";
 

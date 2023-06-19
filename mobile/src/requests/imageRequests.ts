@@ -1,24 +1,36 @@
 import axios from "axios";
-import { setCategories, setCurrentCategory } from "../redux/slices/appSlice";
 import { setNotification } from "../redux/slices/notificationSlice";
-import { CATEGORY_BASE } from "./routes";
+import { CATEGORY_BASE, IMAGE_BASE } from "./routes";
 import { Dispatch } from "@reduxjs/toolkit";
 import { headers } from "../constants/headers";
 
-export const getCategories = async ({
+export const postImage = async ({
   dispatch,
   token,
+  image,
+  description,
+  collectionIds,
 }: {
   dispatch: Dispatch;
   token: string | null;
+  image: any;
+  description: string;
+  collectionIds: string[];
 }) => {
   const headrs = headers(token);
 
+  //enter upload logic here
+  const src = "";
+
+  const body = {
+    image: src,
+    description,
+    collectionIds,
+  };
+
   await axios
-    .get(CATEGORY_BASE, headrs)
-    .then((res) => {
-      dispatch(setCategories(res.data));
-    })
+    .post(IMAGE_BASE, body, headrs)
+    .then((res) => {})
     .catch((err) => {
       if (!err.response) {
         return console.log(err);
@@ -34,7 +46,7 @@ export const getCategories = async ({
     });
 };
 
-export const getCategory = async ({
+export const deleteImage = async ({
   dispatch,
   token,
   id,
@@ -46,10 +58,8 @@ export const getCategory = async ({
   const headrs = headers(token);
 
   await axios
-    .get(`${CATEGORY_BASE}/${id}`, headrs)
-    .then((res) => {
-      dispatch(setCurrentCategory(res.data));
-    })
+    .delete(`${CATEGORY_BASE}/${id}`, headrs)
+    .then((res) => {})
     .catch((err) => {
       if (!err.response) {
         return console.log(err);
