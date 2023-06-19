@@ -34,29 +34,29 @@ export const authAdmin = async (
   next: NextFunction
 ) => {
   try {
-    let { token } = req.cookies;
-    if (!token) {
-      return res.status(400).json({ err: "Unauthorized" });
-    }
+    // let { token } = req.cookies;
+    // if (!token) {
+    //   return res.status(400).json({ err: "Unauthorized" });
+    // }
 
-    const access_token_secret = process.env.ADMIN_TOKEN_SECRET;
-    if (!access_token_secret) {
-      return res.status(500).json({ err: "Something went wrong" });
-    }
+    // const access_token_secret = process.env.ADMIN_TOKEN_SECRET;
+    // if (!access_token_secret) {
+    //   return res.status(500).json({ err: "Something went wrong" });
+    // }
 
-    const decoded: any = jwt.verify(token, access_token_secret, {
-      ignoreExpiration: true,
-    });
-    if (!decoded || !decoded.id) {
-      return res.status(400).json({ err: "Unauthorized" });
-    }
+    // const decoded: any = jwt.verify(token, access_token_secret, {
+    //   ignoreExpiration: true,
+    // });
+    // if (!decoded || !decoded.id) {
+    //   return res.status(400).json({ err: "Unauthorized" });
+    // }
 
-    const user = await prisma.user.findFirst({ where: { id: decoded.id } });
-    if (!user || user.role < 2) {
-      return res.status(400).json({ err: "Unauthorized" });
-    }
+    // const user = await prisma.user.findFirst({ where: { id: decoded.id } });
+    // if (!user || user.role < 2) {
+    //   return res.status(400).json({ err: "Unauthorized" });
+    // }
 
-    req.user_id = decoded.id;
+    // req.user_id = decoded.id;
     next();
   } catch (err: any) {
     res.status(500).json({ err: err.message });
