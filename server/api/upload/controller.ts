@@ -16,6 +16,8 @@ cloudinary.v2.config({
 export const uploadCtrl = {
   upload: async (req: Request, res: Response) => {
     try {
+      console.log("hujnj");
+      console.log(req.files);
       if (!req.files) {
         return res.status(400).json({ err: "No files were uploaded." });
       }
@@ -27,7 +29,7 @@ export const uploadCtrl = {
         return res.status(400).json({ err: "No files were uploaded." });
       }
 
-      cloudinary.v2.uploader.upload(
+      await cloudinary.v2.uploader.upload(
         file.tempFilePath,
         { folder: "LifeCoach/Images" },
         async (err, result) => {
@@ -59,7 +61,7 @@ export const uploadCtrl = {
         return res.status(400).json({ err: "No files were uploaded." });
       }
 
-      cloudinary.v2.uploader.upload(
+      await cloudinary.v2.uploader.upload(
         file.tempFilePath,
         { folder: "LifeCoach/Categories" },
         async (err, result) => {

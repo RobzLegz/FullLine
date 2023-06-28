@@ -1,6 +1,13 @@
-import { StyleSheet, Image, View, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Image,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import React from "react";
-import { white } from "../../constants/colors";
+import { accent, white } from "../../constants/colors";
 import {
   TopControls,
   cameraContainerStyle,
@@ -14,14 +21,37 @@ import {
 } from "../../redux/slices/appSlice";
 import { useDispatch, useSelector } from "react-redux";
 import CameraCategory from "../category/CameraCategory";
+import IonIcon from "react-native-vector-icons/Ionicons";
+import * as MediaLibrary from "expo-media-library";
+import { uploadImage } from "../../requests/uploadRequests";
+import { UserInfo, selectUser } from "../../redux/slices/userSlice";
 
-const ImageTakenContainer: React.FC<{ image: string; retake: () => void }> = ({
-  image,
-  retake,
-}) => {
+const ImageTakenContainer: React.FC<{
+  image: string;
+  setImage: React.Dispatch<React.SetStateAction<string | null>>;
+}> = ({ image, setImage }) => {
   const dispatch = useDispatch();
 
   const appInfo: AppInfo = useSelector(selectApp);
+  const userInfo: UserInfo = useSelector(selectUser);
+
+  const savePicture = async () => {
+    if (!image) {
+      return;
+    }
+
+    try {
+      const asset = await MediaLibrary.createAssetAsync(image);
+      await uploadImage({
+        image: asset,
+        token: userInfo.token,
+        alert: Alert.alert,
+      });
+      setImage(null);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   if (!appInfo.categories) {
     return null;
@@ -53,12 +83,16 @@ const ImageTakenContainer: React.FC<{ image: string; retake: () => void }> = ({
           </ScrollView>
         </View>
 
-        <View style={styles.sendButtonContainer}></View>
+        <View style={styles.sendButtonContainer}>
+          <TouchableOpacity style={styles.sendButton} onPress={savePicture}>
+            <IonIcon name="send" size={24} color={white} />
+          </TouchableOpacity>
+        </View>
       </View>
 
       <TopControls
         retake={() => {
-          retake();
+          setImage(null);
           dispatch(selectCategory(null));
         }}
       />
@@ -80,8 +114,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   sendButtonContainer: {
-    width: 60,
+    width: 65,
     height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  sendButton: {
+    backgroundColor: accent,
+    width: 50,
+    height: 50,
+    borderRadius: 5,
     alignItems: "center",
     justifyContent: "center",
   },

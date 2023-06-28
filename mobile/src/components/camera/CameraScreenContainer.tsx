@@ -1,21 +1,12 @@
 import React, { useState, useRef, useCallback } from "react";
-import {
-  Dimensions,
-  View,
-  StyleSheet,
-  Image,
-  Alert,
-  TouchableOpacity,
-} from "react-native";
+import { Dimensions, View, StyleSheet, TouchableOpacity } from "react-native";
 import { Camera } from "expo-camera";
-import * as MediaLibrary from "expo-media-library";
 import { MaterialIcons, Octicons, Entypo } from "@expo/vector-icons";
 import { white } from "../../constants/colors";
 import { useNavigation } from "@react-navigation/native";
 import { cameraButtonStyle } from "./CameraButton";
 import ImageTakenContainer from "./ImageTakenContainer";
-import { Asset } from "expo-asset";
-import { manipulateAsync, FlipType, SaveFormat } from "expo-image-manipulator";
+import { manipulateAsync, FlipType } from "expo-image-manipulator";
 
 export const { height, width } = Dimensions.get("window");
 
@@ -27,22 +18,8 @@ const CameraScreenContainer = () => {
   const [image, setImage] = useState<string | null>(null);
   const cameraRef = useRef<Camera>(null);
 
-  const savePicture = async () => {
-    if (image) {
-      try {
-        const asset = await MediaLibrary.createAssetAsync(image);
-        console.log(asset);
-        Alert.alert("Picture saved! 🎉");
-        setImage(null);
-        console.log("saved successfully");
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
-
   if (image) {
-    return <ImageTakenContainer image={image} retake={() => setImage(null)} />;
+    return <ImageTakenContainer image={image} setImage={setImage} />;
   }
 
   return (

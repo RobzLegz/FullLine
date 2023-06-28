@@ -1,4 +1,4 @@
-export const accent = "#771F49";
+export const accent = "#38BFEA";
 
 export const white = "#FEFEFE";
 export const black = "#131212";

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import HomeScreen from "../screens/Home";
 import CameraScreen from "../screens/Camera";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +14,12 @@ import {
   Roboto_500Medium,
 } from "@expo-google-fonts/roboto";
 import * as SplashScreen from "expo-splash-screen";
+import * as SQLite from "expo-sqlite";
+
+export const openDatabase = () => {
+  const db = SQLite.openDatabase("db.db");
+  return db;
+};
 
 SplashScreen.preventAutoHideAsync();
 
