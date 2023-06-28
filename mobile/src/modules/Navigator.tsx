@@ -14,12 +14,6 @@ import {
   Roboto_500Medium,
 } from "@expo-google-fonts/roboto";
 import * as SplashScreen from "expo-splash-screen";
-import * as SQLite from "expo-sqlite";
-
-export const openDatabase = () => {
-  const db = SQLite.openDatabase("db.db");
-  return db;
-};
 
 SplashScreen.preventAutoHideAsync();
 
