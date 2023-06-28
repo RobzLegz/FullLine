@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import HomeScreen from "../screens/Home";
+import CameraScreen from "../screens/Camera";
 import { useDispatch, useSelector } from "react-redux";
 import { AppInfo, selectApp } from "../redux/slices/appSlice";
 import { selectUser, UserInfo } from "../redux/slices/userSlice";
@@ -13,6 +14,12 @@ import {
   Roboto_500Medium,
 } from "@expo-google-fonts/roboto";
 import * as SplashScreen from "expo-splash-screen";
+import * as SQLite from "expo-sqlite";
+
+export const openDatabase = () => {
+  const db = SQLite.openDatabase("db.db");
+  return db;
+};
 
 SplashScreen.preventAutoHideAsync();
 
@@ -69,13 +76,17 @@ const Navigator = () => {
     return null;
   }
 
-  console.log(appInfo.categories);
-
   return (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
         name="Home"
         component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="Camera"
+        component={CameraScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

@@ -16,32 +16,20 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "config": {
-        "googleMapsApiKey": "AIzaSyAHOFdh76NNIGsxyXaq2JwrNavKp9xAsT4",
-        "usesNonExemptEncryption": false
-      },
-      "infoPlist": {
-        "NSLocationWhenInUseUsageDescription ": "We are using your app usage data, to more effectively reccommend events"
-      },
       "supportsTablet": true,
       "bundleIdentifier": "com.spotloc.app",
-      "buildNumber": "14",
-      "appBuildVersion": "14"
+      "buildNumber": "1",
+      "appBuildVersion": "1"
     },
     "android": {
       "googleServicesFile": "./google-services.json",
       "permissions": ["com.google.android.gms.permission.AD_ID"],
-      "config": {
-        "googleMaps": {
-          "apiKey": "AIzaSyDHL7-YqiQ223tGOKR0IBj5QQAb9nsKgxo"
-        }
-      },
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.spotloc.app",
-      "versionCode": 11
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -63,9 +51,9 @@
       }
     ],
     [
-      "expo-location",
+      "expo-camera",
       {
-        "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+        "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
       }
     ]
   ]

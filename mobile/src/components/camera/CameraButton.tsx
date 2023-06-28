@@ -1,11 +1,25 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useCallback } from "react";
 import { accent, gray, white } from "../../constants/colors";
 import EntypoIcon from "react-native-vector-icons/Entypo";
+import { useNavigation } from "@react-navigation/native";
+import { Camera, CameraType } from "expo-camera";
+import * as MediaLibrary from "expo-media-library";
 
 const CameraButton = () => {
+  const navigation = useNavigation<any>();
+
+  const handleClick = useCallback(async () => {
+    const mediaStatus = await MediaLibrary.requestPermissionsAsync();
+    const cameraStatus = await Camera.requestCameraPermissionsAsync();
+
+    if (cameraStatus.status === "granted" && mediaStatus.status === "granted") {
+      navigation.navigate("Camera");
+    }
+  }, []);
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={handleClick}>
       <EntypoIcon name="circular-graph" color={white} size={26} />
     </TouchableOpacity>
   );
@@ -33,3 +47,5 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
 });
+
+export const cameraButtonStyle = styles.container;
