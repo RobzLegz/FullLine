@@ -15,7 +15,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import CameraCategory from "../category/CameraCategory";
 
-const ImageTakenContainer: React.FC<{ image: string; retake?: () => void }> = ({
+const ImageTakenContainer: React.FC<{ image: string; retake: () => void }> = ({
   image,
   retake,
 }) => {
@@ -57,14 +57,10 @@ const ImageTakenContainer: React.FC<{ image: string; retake?: () => void }> = ({
       </View>
 
       <TopControls
-        retake={
-          retake
-            ? () => {
-                retake();
-                dispatch(selectCategory(null));
-              }
-            : undefined
-        }
+        retake={() => {
+          retake();
+          dispatch(selectCategory(null));
+        }}
       />
     </View>
   );
