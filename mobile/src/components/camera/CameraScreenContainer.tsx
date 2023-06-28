@@ -42,7 +42,7 @@ const CameraScreenContainer = () => {
   };
 
   if (image) {
-    return <ImageTakenContainer image={image} />;
+    return <ImageTakenContainer image={image} retake={() => setImage(null)} />;
   }
 
   return (
@@ -122,11 +122,16 @@ const styles = StyleSheet.create({
 
 export const cameraContainerStyle = styles.container;
 
-const TopControls = () => {
+export const TopControls: React.FC<{ retake?: () => void }> = ({ retake }) => {
   const navigation = useNavigation();
   const goBack = useCallback(() => {
+    if (retake) {
+      retake();
+      return;
+    }
+
     navigation.goBack();
-  }, []);
+  }, [retake]);
 
   return (
     <View style={styles.topControls}>
@@ -184,9 +189,7 @@ const CameraScreenButton: React.FC<{
   const takePicture = async () => {
     if (cameraRef.current) {
       try {
-        const data = await cameraRef.current.takePictureAsync({
-          isImageMirror: true,
-        });
+        const data = await cameraRef.current.takePictureAsync();
 
         if (type === "front") {
           const manipResult = await manipulateAsync(data.uri, [

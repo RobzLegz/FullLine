@@ -70,8 +70,6 @@ const Navigator = () => {
     return null;
   }
 
-  console.log(appInfo.categories);
-
   return (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
