@@ -1,13 +1,13 @@
 import * as SQLite from "expo-sqlite";
 
 export class Db {
-    private db: SQLite.WebSQLDatabase
+  private db: SQLite.WebSQLDatabase;
 
-    constructor() {
-        this.db = SQLite.openDatabase("lifecoach.db");
+  constructor() {
+    this.db = SQLite.openDatabase("lifecoach.db");
 
-        this.execAndReturnSql(
-            `CREATE TABLE IF NOT EXISTS images (
+    this.execAndReturnSql(
+      `CREATE TABLE IF NOT EXISTS images (
                 id INTEGER PRIMARY KEY,
                 source TEXT
             );
@@ -36,48 +36,48 @@ export class Db {
             INSERT INTO category (name)
             SELECT 'Purpose'
             WHERE NOT EXISTS (SELECT 1 FROM category WHERE name = 'Purpose');
-            `     
-        );
-    }
+            `
+    );
+  }
 
-    private execSql(query: string) {
-        this.db.transaction((tx) => {
-            tx.executeSql(query);
-          });
-    }
+  private execSql(query: string) {
+    this.db.transaction((tx) => {
+      tx.executeSql(query);
+    });
+  }
 
-    private execAndReturnSql(query: string) {
-        let x;
-        this.db.transaction((tx) => {
-            tx.executeSql(query, [], (a, { rows }) => x = rows);
-        });
+  private execAndReturnSql(query: string) {
+    let x;
+    this.db.transaction((tx) => {
+      tx.executeSql(query, [], (a, { rows }) => (x = rows));
+    });
 
-        return x;
-    }
+    return x;
+  }
 
-    public getImages() {
-        const prikol = this.execAndReturnSql(`
+  public getImages() {
+    const prikol = this.execAndReturnSql(`
             SELECT images.id AS image_id, images.source, image_category.category_id
             FROM images
             LEFT JOIN image_category ON images.id = image_category.image_id;
-        `)
-        return prikol;
-    }
+        `);
+    return prikol;
+  }
 
-    public getCategories() {
-        const prikol = this.execAndReturnSql(`
+  public getCategories() {
+    const prikol = this.execAndReturnSql(`
             SELECT * from category;
-        `)
-        return prikol;
-    }
+        `);
+    return prikol;
+  }
 
-    public countImages() {
-        const prikol = this.execAndReturnSql(`
+  public countImages() {
+    const prikol = this.execAndReturnSql(`
             SELECT COUNT(*) AS image_count
             FROM images;
-        `)
-        return prikol;
-    }
+        `);
+    return prikol;
+  }
 
     public countImagesInCategories() {
         const kkas: any = this.getCategories();
@@ -103,33 +103,35 @@ export class Db {
             `);
 
             let img_id: number | undefined;
-            tx.executeSql(`SELECT last_insert_rowid();`, [], (x, { insertId }) => img_id = insertId);
 
+            tx.executeSql(
+              `SELECT last_insert_rowid();`, [], (x, { insertId }) => (img_id = insertId)
+            );
+            
             if (!img_id) {
-                throw new Error("Failed writing to db.")
+              throw new Error("Failed writing to db.");
             }
-
+        
             for (const cat in cats) {
                 tx.executeSql(`
                     INSERT INTO image_category (image_id, category_id)
                     VALUES (${img_id.toString()}, ${cat});
                 `);
-            }        
+            }
         });
     }
 
-    public getImagesInCategory(cat: number) {
-        const prikol = this.execAndReturnSql(`
+  public getImagesInCategory(cat: number) {
+    const prikol = this.execAndReturnSql(`
             SELECT images.id, images.source
             FROM images
             JOIN image_category ON images.id = image_category.image_id
             JOIN category ON image_category.category_id = category.id
             WHERE category.name = 'your_category_name';
-        `)
+        `);
 
-        return prikol;
-    }
-
+    return prikol;
+  }
 }
 
-
+export const db = new Db();
