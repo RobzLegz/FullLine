@@ -79,47 +79,48 @@ export class Db {
     return prikol;
   }
 
-    public countImagesInCategories() {
-        const kkas: any = this.getCategories();
-        for (const cat in kkas) {
+  public countImagesInCategories() {
+    const kkas: any = this.getCategories();
+    for (const cat in kkas) {
+    }
 
-        }
-
-        const prikol = this.execAndReturnSql(`
+    const prikol = this.execAndReturnSql(`
             SELECT COUNT(*) AS image_count
             FROM images
             JOIN image_category ON images.id = image_category.image_id
             JOIN category ON image_category.category_id = category.id
             WHERE category.name = 'your_category_name';
-        `)
-        return prikol;
-    }
+        `);
+    return prikol;
+  }
 
-    public addImage(src: string, cats: number[]) {
-        this.db.transaction((tx) => {
-            tx.executeSql(`
+  public addImage(src: string, cats: number[]) {
+    this.db.transaction((tx) => {
+      tx.executeSql(`
                 INSERT INTO images (source)
                 VALUES ('${src}');
             `);
 
-            let img_id: number | undefined;
+      let img_id: number | undefined;
 
-            tx.executeSql(
-              `SELECT last_insert_rowid();`, [], (x, { insertId }) => (img_id = insertId)
-            );
-            
-            if (!img_id) {
-              throw new Error("Failed writing to db.");
-            }
-        
-            for (const cat in cats) {
-                tx.executeSql(`
+      tx.executeSql(
+        `SELECT last_insert_rowid();`,
+        [],
+        (x, { insertId }) => (img_id = insertId)
+      );
+
+      if (!img_id) {
+        throw new Error("Failed writing to db.");
+      }
+
+      for (const cat in cats) {
+        tx.executeSql(`
                     INSERT INTO image_category (image_id, category_id)
                     VALUES (${img_id.toString()}, ${cat});
                 `);
-            }
-        });
-    }
+      }
+    });
+  }
 
   public getImagesInCategory(cat: number) {
     const prikol = this.execAndReturnSql(`
