@@ -27,24 +27,21 @@ export const categories = [
     id: 4,
     title: "Harmony",
     icon: "/assets/icons/harmony.png",
-    color: "#D249D2",
-    description:
-      "The reason for which something is done or created or for which something exists.",
+    color: "",
+    description: "",
   },
   {
     id: 5,
     title: "Happiness",
     icon: "/assets/icons/happiness.png",
-    color: "#D249D2",
-    description:
-      "The reason for which something is done or created or for which something exists.",
+    color: "",
+    description: "",
   },
   {
     id: 6,
     title: "Awareness",
     icon: "/assets/icons/awareness.png",
-    color: "#D249D2",
-    description:
-      "The reason for which something is done or created or for which something exists.",
+    color: "",
+    description: "",
   },
 ];
