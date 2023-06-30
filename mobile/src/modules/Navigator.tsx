@@ -4,9 +4,7 @@ import CameraScreen from "../screens/Camera";
 import { useDispatch, useSelector } from "react-redux";
 import { AppInfo, selectApp } from "../redux/slices/appSlice";
 import { selectUser, UserInfo } from "../redux/slices/userSlice";
-import { authUser } from "../requests/userRequests";
 import { createStackNavigator } from "@react-navigation/stack";
-import { getCategories } from "../requests/categoryRequests";
 import {
   useFonts,
   Roboto_400Regular,
@@ -14,12 +12,7 @@ import {
   Roboto_500Medium,
 } from "@expo-google-fonts/roboto";
 import * as SplashScreen from "expo-splash-screen";
-import * as SQLite from "expo-sqlite";
-
-export const openDatabase = () => {
-  const db = SQLite.openDatabase("db.db");
-  return db;
-};
+import { getImages } from "../utils/data";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -42,37 +35,17 @@ const Navigator = () => {
   });
 
   useEffect(() => {
-    if (!userInfo.token && !receivedUserInfo.current) {
-      receivedUserInfo.current = true;
-      authUser({ dispatch });
-    }
-
-    if (
-      !appInfo.categories &&
-      userInfo.token &&
-      !receivedCategoryInfo.current
-    ) {
-      receivedCategoryInfo.current = true;
-      getCategories({
-        dispatch,
-        token: userInfo.token,
-      });
-    }
+    getImages();
   }, [userInfo.token, appInfo.categories, userInfo.info?.id]);
 
   useEffect(() => {
-    if (
-      appInfo.categories &&
-      userInfo.info &&
-      fontsLoaded &&
-      !splashScreenHidden.current
-    ) {
+    if (fontsLoaded && !splashScreenHidden.current) {
       splashScreenHidden.current = true;
       SplashScreen.hideAsync();
     }
-  }, [userInfo.info, fontsLoaded, appInfo.categories]);
+  }, [fontsLoaded]);
 
-  if (!userInfo.info || !appInfo.categories || !fontsLoaded) {
+  if (!fontsLoaded) {
     return null;
   }
 

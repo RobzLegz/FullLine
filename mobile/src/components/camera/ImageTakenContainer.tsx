@@ -23,7 +23,6 @@ import { useDispatch, useSelector } from "react-redux";
 import CameraCategory from "../category/CameraCategory";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import * as MediaLibrary from "expo-media-library";
-import { uploadImage } from "../../requests/uploadRequests";
 import { UserInfo, selectUser } from "../../redux/slices/userSlice";
 
 const ImageTakenContainer: React.FC<{
@@ -42,11 +41,11 @@ const ImageTakenContainer: React.FC<{
 
     try {
       const asset = await MediaLibrary.createAssetAsync(image);
-      await uploadImage({
-        image: asset,
-        token: userInfo.token,
-        alert: Alert.alert,
-      });
+      // await uploadImage({
+      //   image: asset,
+      //   token: userInfo.token,
+      //   alert: Alert.alert,
+      // });
       setImage(null);
     } catch (error) {
       console.log(error);
