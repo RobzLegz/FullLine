@@ -1,60 +1,13 @@
 {
   "expo": {
-    "name": "fulline",
-    "slug": "fulline",
-    "version": "0.1.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "dark",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#0B0E11"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.fulline.app",
-      "buildNumber": "1",
-      "appBuildVersion": "1"
-    },
-    "android": {
-      "googleServicesFile": "./google-services.json",
-      "permissions": ["com.google.android.gms.permission.AD_ID"],
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      },
-      "package": "com.fulline.app",
-      "versionCode": 1
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
     "extra": {
       "eas": {
-        "projectId": "070c97b5-f8fb-409f-835c-2a07355fd3bd"
+        "projectId": "27b2b5c2-1ad5-43db-98c7-42c7ebf542d0"
       }
     },
-    "plugins": ["expo-build-properties"]
-  },
-  "plugins": [
-    [
-      "expo-build-properties",
-      {
-        "android": {
-          "enableProguardInReleaseBuilds": true
-        }
-      }
-    ],
-    [
-      "expo-camera",
-      {
-        "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
-      }
-    ]
-  ]
+    "owner": "sussybob",
+    "android": {
+      "package": "com.fulline.app"
+    }
+  }
 }
