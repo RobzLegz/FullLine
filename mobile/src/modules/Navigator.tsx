@@ -12,7 +12,6 @@ import {
   Roboto_500Medium,
 } from "@expo-google-fonts/roboto";
 import * as SplashScreen from "expo-splash-screen";
-import { getImages } from "../utils/data";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -33,10 +32,6 @@ const Navigator = () => {
     Roboto_700Bold,
     Roboto_500Medium,
   });
-
-  useEffect(() => {
-    getImages();
-  }, [userInfo.token, appInfo.categories, userInfo.info?.id]);
 
   useEffect(() => {
     if (fontsLoaded && !splashScreenHidden.current) {
