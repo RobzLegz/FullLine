@@ -17,7 +17,7 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.spotloc.app",
+      "bundleIdentifier": "com.fulline.app",
       "buildNumber": "1",
       "appBuildVersion": "1"
     },
@@ -28,7 +28,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.spotloc.app",
+      "package": "com.fulline.app",
       "versionCode": 1
     },
     "web": {

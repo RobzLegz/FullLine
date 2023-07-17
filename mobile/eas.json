@@ -1,28 +1,12 @@
 {
   "build": {
     "development": {
-      "credentialsSource": "remote",
-      "distribution": "internal",
       "developmentClient": true,
-      "ios": {
-        "resourceClass": "m1-medium"
-      }
+      "distribution": "internal"
     },
     "preview": {
-      "distribution": "internal",
-      "ios": {
-        "resourceClass": "m1-medium"
-      },
-      "android": {
-        "buildType": "apk"
-      }
+      "distribution": "internal"
     },
-    "production": {
-      "credentialsSource": "remote",
-      "distribution": "store",
-      "ios": {
-        "resourceClass": "m1-medium"
-      }
-    }
+    "production": {}
   }
 }
