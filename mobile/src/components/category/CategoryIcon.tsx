@@ -3,25 +3,55 @@ import React from "react";
 import { white } from "../../constants/colors";
 import { P } from "../../styles/text";
 import { Category } from "../../data/categories";
+import { useDispatch } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import { setCurrentCategory } from "../../redux/slices/appSlice";
 
-const CategoryIcon: React.FC<Category> = ({ height, color, icon, title }) => {
+const CategoryIcon: React.FC<Category> = ({ ...props }) => {
+  const dispatch = useDispatch();
+  const navigation = useNavigation<any>();
+
+  const handlePress = () => {
+    dispatch(setCurrentCategory(props));
+    navigation.navigate("Category");
+  };
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.category}>
-        <View style={styles.body}>
-          <Image source={icon} style={styles.icon} />
-        </View>
-
-        <View
-          style={{
-            ...styles.fillColor,
-            backgroundColor: color,
-            height: height,
-          }}
-        ></View>
+      <TouchableOpacity onPress={handlePress}>
+        <Icon {...props} />
       </TouchableOpacity>
 
-      <P style={{ marginTop: 6, fontSize: 12 }}>{title}</P>
+      <P style={{ marginTop: 6, fontSize: 12 }}>{props.title}</P>
+    </View>
+  );
+};
+
+export const Icon: React.FC<Category> = ({ ...props }) => {
+  return (
+    <View style={styles.category}>
+      <View style={styles.body}>
+        <Image source={props.icon} style={styles.icon} />
+      </View>
+
+      <View style={styles.fillColor}>
+        <View
+          style={{
+            width: "100%",
+            height: "100%",
+            position: "relative",
+            justifyContent: "flex-end",
+          }}
+        >
+          <View
+            style={{
+              width: "100%",
+              backgroundColor: props.color,
+              height: props.height * 0.8,
+            }}
+          />
+        </View>
+      </View>
     </View>
   );
 };
@@ -32,11 +62,12 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
+    margin: 10,
   },
   category: {
     width: 80,
     height: 80,
-    borderRadius: 20,
+    borderRadius: 15,
     justifyContent: "center",
     alignItems: "center",
     position: "relative",
@@ -50,7 +81,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.36,
     shadowRadius: 6.68,
     elevation: 11,
-    marginHorizontal: 10,
   },
   icon: {
     width: 50,

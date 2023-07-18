@@ -36,6 +36,10 @@ const ImageTakenContainer: React.FC<{
   const appInfo: AppInfo = useSelector(selectApp);
 
   const savePicture = async () => {
+    if (appInfo.selectedCategories.length === 0) {
+      return;
+    }
+
     if (!image) {
       return;
     }

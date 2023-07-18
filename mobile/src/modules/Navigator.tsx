@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import HomeScreen from "../screens/Home";
+import CategoryScreen from "../screens/Category";
 import CameraScreen from "../screens/Camera";
 import { createStackNavigator } from "@react-navigation/stack";
 import {
@@ -11,7 +12,6 @@ import {
 import * as SplashScreen from "expo-splash-screen";
 import loadStateFromMMKV from "../loaders/mmkvLoader";
 import { useDispatch } from "react-redux";
-import { updateData } from "../redux/slices/appSlice";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -59,6 +59,12 @@ const Navigator = () => {
       <Stack.Screen
         name="Camera"
         component={CameraScreen}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="Category"
+        component={CategoryScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

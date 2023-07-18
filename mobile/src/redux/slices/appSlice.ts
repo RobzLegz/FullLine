@@ -29,11 +29,11 @@ export const appSlice: any = createSlice({
       const thisWeek = new Date();
       thisWeek.setDate(new Date().getDate() - 7);
 
-      const count = categories
-        .map(
+      const count = Math.max(
+        ...categories.map(
           (c) => c.images.filter((im) => new Date(im.date) >= thisWeek).length
         )
-        .reduce((partialSum, a) => partialSum + a, 0);
+      );
 
       if (count > 0) {
         categories = categories.map((cat) => {
@@ -97,11 +97,11 @@ export const appSlice: any = createSlice({
       const thisWeek = new Date();
       thisWeek.setDate(new Date().getDate() - 7);
 
-      const count = state.categories
-        .map(
+      const count = Math.max(
+        ...state.categories.map(
           (c) => c.images.filter((im) => new Date(im.date) >= thisWeek).length
         )
-        .reduce((partialSum, a) => partialSum + a, 0);
+      );
 
       const newCategories = state.categories.map((cat) => {
         let rtnrCat = cat;
@@ -138,7 +138,6 @@ export const {
   setCurrentCategory,
   selectCategory,
   postImage,
-  updateData,
   loadState,
 } = appSlice.actions;
 
