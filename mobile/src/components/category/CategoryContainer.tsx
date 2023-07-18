@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { AppInfo, selectApp } from "../../redux/slices/appSlice";
 import { useSelector } from "react-redux";
 import { Icon } from "./CategoryIcon";
@@ -15,12 +15,14 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { FlashList } from "@shopify/flash-list";
 import { FullLineImage } from "../../types/image";
 
-const { width: WINDOW_WIDTH } = Dimensions.get("window");
+const { width: WINDOW_WIDTH, height: WINDOW_HEIGHT } = Dimensions.get("window");
 
 const CategoryContainer = () => {
   const navigation = useNavigation<any>();
 
   const appInfo: AppInfo = useSelector(selectApp);
+
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   if (!appInfo.currentCategory) {
     return null;
@@ -72,7 +74,7 @@ const CategoryContainer = () => {
 
             <View style={styles.stat}>
               <Strong style={{ color, fontSize: 24, marginBottom: 2 }}>
-                {height}%
+                {Math.floor(height)}%
               </Strong>
 
               <Small style={{ color: "gray" }}>Fulfilled</Small>
@@ -93,15 +95,42 @@ const CategoryContainer = () => {
         </View>
       </View>
 
-      <ImageGallery images={images} />
+      {selectedImage && (
+        <FullScreenViewer
+          images={images}
+          selectedImage={selectedImage}
+          setSelectedImage={setSelectedImage}
+        />
+      )}
+
+      <ImageGallery images={images} setSelectedImage={setSelectedImage} />
     </View>
   );
 };
 
-const ImageGallery: React.FC<{ images: FullLineImage[] }> = ({ images }) => {
+const FullScreenViewer: React.FC<{
+  images: FullLineImage[];
+  selectedImage: string | null;
+  setSelectedImage: React.Dispatch<React.SetStateAction<string | null>>;
+}> = ({ images, selectedImage, setSelectedImage }) => {
   const ImageCard: React.FC<FullLineImage> = ({ src }) => {
     return (
-      <View style={styles.galleryImage}>
+      <View style={styles.fullScreenImage}>
+        <Image
+          source={{ uri: src }}
+          style={{
+            width: "100%",
+            height: "100%",
+            resizeMode: "cover",
+          }}
+        />
+      </View>
+    );
+  };
+
+  const SmallImageCard: React.FC<FullLineImage> = ({ src }) => {
+    return (
+      <View style={{ width: 80, height: 80, borderRadius: 5, marginRight: 5 }}>
         <Image
           source={{ uri: src }}
           style={{
@@ -112,6 +141,71 @@ const ImageGallery: React.FC<{ images: FullLineImage[] }> = ({ images }) => {
           }}
         />
       </View>
+    );
+  };
+
+  return (
+    <View style={styles.fullScreenViewer}>
+      <View
+        style={{
+          width: 400,
+          minWidth: WINDOW_WIDTH,
+          height: WINDOW_HEIGHT,
+          minHeight: WINDOW_HEIGHT,
+          flex: 1,
+          position: "relative",
+        }}
+      >
+        <FlashList
+          data={images}
+          renderItem={({ item }) => <ImageCard {...item} />}
+          estimatedItemSize={Math.floor(WINDOW_WIDTH)}
+          showsHorizontalScrollIndicator={false}
+          horizontal
+        />
+
+        <View
+          style={{
+            width: "100%",
+            position: "absolute",
+            left: 0,
+            bottom: 0,
+            padding: 10,
+          }}
+        >
+          <FlashList
+            data={images}
+            renderItem={({ item }) => <SmallImageCard {...item} />}
+            estimatedItemSize={80}
+            showsHorizontalScrollIndicator={false}
+            horizontal
+          />
+        </View>
+      </View>
+    </View>
+  );
+};
+
+const ImageGallery: React.FC<{
+  images: FullLineImage[];
+  setSelectedImage: React.Dispatch<React.SetStateAction<string | null>>;
+}> = ({ images, setSelectedImage }) => {
+  const ImageCard: React.FC<FullLineImage> = ({ src }) => {
+    return (
+      <TouchableOpacity
+        style={styles.galleryImage}
+        onPress={() => setSelectedImage(src)}
+      >
+        <Image
+          source={{ uri: src }}
+          style={{
+            width: "100%",
+            height: "100%",
+            resizeMode: "cover",
+            borderRadius: 5,
+          }}
+        />
+      </TouchableOpacity>
     );
   };
 
@@ -188,5 +282,18 @@ const styles = StyleSheet.create({
     width: WINDOW_WIDTH / 3,
     height: WINDOW_WIDTH / 3,
     padding: 2,
+  },
+  fullScreenViewer: {
+    width: WINDOW_WIDTH,
+    height: WINDOW_HEIGHT,
+    position: "absolute",
+    top: 0,
+    left: 0,
+    backgroundColor: "black",
+    zIndex: 5,
+  },
+  fullScreenImage: {
+    width: WINDOW_WIDTH,
+    height: WINDOW_HEIGHT,
   },
 });

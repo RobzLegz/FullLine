@@ -18,7 +18,7 @@ const CategoryIcon: React.FC<Category> = ({ ...props }) => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={handlePress}>
+      <TouchableOpacity onPress={handlePress} activeOpacity={1}>
         <Icon {...props} />
       </TouchableOpacity>
 
