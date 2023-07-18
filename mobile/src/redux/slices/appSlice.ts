@@ -111,7 +111,7 @@ export const appSlice: any = createSlice({
         }
 
         if (count > 0) {
-          const imageCount = cat.images.filter(
+          const imageCount = rtnrCat.images.filter(
             (im) => new Date(im.date) >= thisWeek
           ).length;
 

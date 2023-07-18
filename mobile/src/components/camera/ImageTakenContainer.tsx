@@ -24,12 +24,14 @@ import { useDispatch, useSelector } from "react-redux";
 import CameraCategory from "../category/CameraCategory";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import * as MediaLibrary from "expo-media-library";
+import { useNavigation } from "@react-navigation/native";
 
 const ImageTakenContainer: React.FC<{
   image: string;
   setImage: React.Dispatch<React.SetStateAction<string | null>>;
 }> = ({ image, setImage }) => {
   const dispatch = useDispatch();
+  const navigation = useNavigation<any>();
 
   const appInfo: AppInfo = useSelector(selectApp);
 
@@ -44,6 +46,8 @@ const ImageTakenContainer: React.FC<{
       dispatch(postImage({ src: asset.uri, date: String(new Date()) }));
 
       setImage(null);
+
+      navigation.navigate("Home");
     } catch (error) {
       console.log(error);
     }
