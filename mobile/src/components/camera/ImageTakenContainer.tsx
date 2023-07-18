@@ -79,6 +79,7 @@ const ImageTakenContainer: React.FC<{
           <ScrollView
             style={styles.categoryContainer}
             horizontal
+            showsHorizontalScrollIndicator={false}
             contentContainerStyle={{
               alignItems: "center",
             }}

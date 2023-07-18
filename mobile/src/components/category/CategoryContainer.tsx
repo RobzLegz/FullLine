@@ -26,11 +26,9 @@ const CategoryContainer = () => {
     return null;
   }
 
-  const { color, height, title, description, icon, images } =
-    appInfo.currentCategory;
+  const { color, height, title, description, images } = appInfo.currentCategory;
 
-  const lastImageDate =
-    images.length === 0 ? null : new Date(images[images.length - 1].date);
+  const lastImageDate = images.length === 0 ? null : new Date(images[0].date);
 
   const lastUpload = !lastImageDate
     ? "None"
@@ -183,8 +181,8 @@ const styles = StyleSheet.create({
   },
   gallery: {
     width: "100%",
-    minHeight: WINDOW_WIDTH / 3,
-    paddingHorizontal: 2
+    minHeight: "100%",
+    paddingHorizontal: 2,
   },
   galleryImage: {
     width: WINDOW_WIDTH / 3,
