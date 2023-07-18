@@ -3,7 +3,7 @@ import appReducer from "./slices/appSlice";
 import notificationReducer from "./slices/notificationSlice";
 import userReducer from "./slices/userSlice";
 import mmkvMiddleware from "../middlewares/mmkvMiddleware";
-// import loadStateFromMMKV from "../loaders/mmkvLoader";
+import loadStateFromMMKV from "../loaders/mmkvLoader";
 
 const store = configureStore({
   reducer: {
@@ -17,6 +17,6 @@ const store = configureStore({
     }).concat(mmkvMiddleware),
 });
 
-// loadStateFromMMKV();
+loadStateFromMMKV();
 
 export default store;

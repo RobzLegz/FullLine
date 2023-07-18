@@ -1,15 +1,15 @@
 import { StyleSheet, TouchableOpacity, View, Image } from "react-native";
 import React from "react";
-import { ExCategory } from "../../interfaces/backendTypes";
 import { white } from "../../constants/colors";
 import { P } from "../../styles/text";
+import { Category } from "../../data/categories";
 
-const CategoryIcon: React.FC<ExCategory> = ({ height, color, icon, title }) => {
+const CategoryIcon: React.FC<Category> = ({ height, color, icon, title }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.category}>
         <View style={styles.body}>
-          <Image source={{ uri: icon }} style={styles.icon} />
+          <Image source={icon} style={styles.icon} />
         </View>
 
         <View

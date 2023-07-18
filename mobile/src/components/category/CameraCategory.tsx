@@ -1,33 +1,37 @@
 import { StyleSheet, TouchableOpacity, View, Image } from "react-native";
 import React, { useState } from "react";
-import { ExCategory } from "../../interfaces/backendTypes";
 import { black, white } from "../../constants/colors";
 import { Small } from "../../styles/text";
 import { useDispatch } from "react-redux";
 import { selectCategory } from "../../redux/slices/appSlice";
+import { Category } from "../../data/categories";
 
-const CameraCategory: React.FC<ExCategory> = ({ color, icon, title, id }) => {
+const CameraCategory: React.FC<Category> = ({ ...props }) => {
   const dispatch = useDispatch();
 
   const [selected, setSelected] = useState(false);
 
   const handleSelect = () => {
-    dispatch(selectCategory(id));
+    console.log(props)
+    dispatch(selectCategory(props));
     setSelected(!selected);
   };
 
   return (
     <TouchableOpacity
-      style={{ ...styles.container, backgroundColor: selected ? color : white }}
+      style={{
+        ...styles.container,
+        backgroundColor: selected ? props.color : white,
+      }}
       onPress={handleSelect}
     >
       <View style={styles.body}>
-        <Image source={{ uri: icon }} style={styles.icon} />
+        <Image source={props.icon} style={styles.icon} />
         <View
           style={{ height: 20, alignItems: "center", justifyContent: "center" }}
         >
           <Small style={{ fontSize: 10, color: selected ? white : black }}>
-            {title}
+            {props.title}
           </Small>
         </View>
       </View>

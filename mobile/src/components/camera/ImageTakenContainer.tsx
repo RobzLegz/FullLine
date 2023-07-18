@@ -41,6 +41,8 @@ const ImageTakenContainer: React.FC<{
 
     try {
       const asset = await MediaLibrary.createAssetAsync(image);
+      console.log(asset)
+
       // await uploadImage({
       //   image: asset,
       //   token: userInfo.token,
