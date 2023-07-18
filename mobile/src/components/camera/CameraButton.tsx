@@ -3,7 +3,7 @@ import React, { useCallback } from "react";
 import { accent, gray, white } from "../../constants/colors";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import { useNavigation } from "@react-navigation/native";
-import { Camera, CameraType } from "expo-camera";
+import { Camera } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 
 const CameraButton = () => {

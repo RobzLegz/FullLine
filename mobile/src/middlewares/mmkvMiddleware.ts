@@ -1,9 +1,10 @@
-import { mmkv } from "../../App";
-import { Middleware } from '@reduxjs/toolkit';
+import { Middleware } from "@reduxjs/toolkit";
+import { mmkv } from "../loaders/mmkvLoader";
 
-export const mmkvMiddleware: Middleware = storeApi => next => action => {
+export const mmkvMiddleware: Middleware = (storeApi) => (next) => (action) => {
   const result = next(action);
-  mmkv.set('redux-state', storeApi.getState());
+
+  mmkv.set("redux-state", JSON.stringify(storeApi.getState().app));
   return result;
 };
 

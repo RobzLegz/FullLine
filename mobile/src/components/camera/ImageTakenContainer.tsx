@@ -16,6 +16,7 @@ import {
 } from "./CameraScreenContainer";
 import {
   AppInfo,
+  postImage,
   selectApp,
   selectCategory,
 } from "../../redux/slices/appSlice";
@@ -23,7 +24,6 @@ import { useDispatch, useSelector } from "react-redux";
 import CameraCategory from "../category/CameraCategory";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import * as MediaLibrary from "expo-media-library";
-import { UserInfo, selectUser } from "../../redux/slices/userSlice";
 
 const ImageTakenContainer: React.FC<{
   image: string;
@@ -32,7 +32,6 @@ const ImageTakenContainer: React.FC<{
   const dispatch = useDispatch();
 
   const appInfo: AppInfo = useSelector(selectApp);
-  const userInfo: UserInfo = useSelector(selectUser);
 
   const savePicture = async () => {
     if (!image) {
@@ -41,13 +40,10 @@ const ImageTakenContainer: React.FC<{
 
     try {
       const asset = await MediaLibrary.createAssetAsync(image);
-      console.log(asset)
+      console.log(asset);
 
-      // await uploadImage({
-      //   image: asset,
-      //   token: userInfo.token,
-      //   alert: Alert.alert,
-      // });
+      dispatch(postImage({ src: asset.uri }));
+
       setImage(null);
     } catch (error) {
       console.log(error);

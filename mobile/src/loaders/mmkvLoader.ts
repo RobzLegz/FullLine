@@ -1,12 +1,14 @@
 import { MMKV } from "react-native-mmkv";
-import store from "../redux/store";
+import { Dispatch } from "@reduxjs/toolkit";
+import { loadState } from "../redux/slices/appSlice";
 
 export const mmkv = new MMKV();
 
-const loadStateFromMMKV = () => {
+const loadStateFromMMKV = (dispatch: Dispatch) => {
   const savedState = mmkv.getString("redux-state");
   if (savedState) {
-    store.dispatch({ type: "LOAD_STATE", payload: savedState });
+    console.log(JSON.parse(savedState));
+    dispatch(loadState(JSON.parse(savedState)));
   }
 };
 

@@ -6,32 +6,28 @@ import { useDispatch } from "react-redux";
 import { selectCategory } from "../../redux/slices/appSlice";
 import { Category } from "../../data/categories";
 
-const CameraCategory: React.FC<Category> = ({ ...props }) => {
+const CameraCategory: React.FC<Category> = ({ color, icon, title, id }) => {
   const dispatch = useDispatch();
 
   const [selected, setSelected] = useState(false);
 
   const handleSelect = () => {
-    console.log(props)
-    dispatch(selectCategory(props));
+    dispatch(selectCategory(id));
     setSelected(!selected);
   };
 
   return (
     <TouchableOpacity
-      style={{
-        ...styles.container,
-        backgroundColor: selected ? props.color : white,
-      }}
+      style={{ ...styles.container, backgroundColor: selected ? color : white }}
       onPress={handleSelect}
     >
       <View style={styles.body}>
-        <Image source={props.icon} style={styles.icon} />
+        <Image source={{ uri: icon }} style={styles.icon} />
         <View
           style={{ height: 20, alignItems: "center", justifyContent: "center" }}
         >
           <Small style={{ fontSize: 10, color: selected ? white : black }}>
-            {props.title}
+            {title}
           </Small>
         </View>
       </View>

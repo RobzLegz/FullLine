@@ -1,9 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import HomeScreen from "../screens/Home";
 import CameraScreen from "../screens/Camera";
-import { useDispatch, useSelector } from "react-redux";
-import { AppInfo, selectApp } from "../redux/slices/appSlice";
-import { selectUser, UserInfo } from "../redux/slices/userSlice";
 import { createStackNavigator } from "@react-navigation/stack";
 import {
   useFonts,
@@ -12,6 +9,8 @@ import {
   Roboto_500Medium,
 } from "@expo-google-fonts/roboto";
 import * as SplashScreen from "expo-splash-screen";
+import loadStateFromMMKV from "../loaders/mmkvLoader";
+import { useDispatch } from "react-redux";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -20,12 +19,8 @@ const Stack = createStackNavigator();
 const Navigator = () => {
   const dispatch = useDispatch();
 
-  const appInfo: AppInfo = useSelector(selectApp);
-  const userInfo: UserInfo = useSelector(selectUser);
-
-  const receivedUserInfo = useRef(false);
-  const receivedCategoryInfo = useRef(false);
   const splashScreenHidden = useRef(false);
+  const stateLoaded = useRef(false);
 
   let [fontsLoaded] = useFonts({
     Roboto_400Regular,
@@ -34,11 +29,19 @@ const Navigator = () => {
   });
 
   useEffect(() => {
-    if (fontsLoaded && !splashScreenHidden.current) {
+    if (fontsLoaded && stateLoaded.current && !splashScreenHidden.current) {
       splashScreenHidden.current = true;
       SplashScreen.hideAsync();
     }
-  }, [fontsLoaded]);
+  }, [fontsLoaded, stateLoaded.current]);
+
+  useEffect(() => {
+    if (!stateLoaded.current) {
+      loadStateFromMMKV(dispatch);
+
+      stateLoaded.current = true;
+    }
+  }, []);
 
   if (!fontsLoaded) {
     return null;

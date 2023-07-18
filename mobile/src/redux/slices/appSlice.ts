@@ -6,7 +6,7 @@ import { FullLineImage } from "../../types/image";
 export interface AppInfo {
   categories: Category[];
   currentCategory: Category | null;
-  selectedCategories: Category[];
+  selectedCategories: number[];
 }
 
 const initialState: AppInfo = {
@@ -19,15 +19,20 @@ export const appSlice: any = createSlice({
   name: "app",
   initialState,
   reducers: {
+    loadState: (state, action: RdxAction<any>) => {
+      if (!action.payload) {
+        return state;
+      }
+
+      return action.payload;
+    },
     setCurrentCategory: (state, action: RdxAction<Category | null>) => {
       return {
         ...state,
         currentCategory: action.payload,
       };
     },
-    selectCategory: (state, action: RdxAction<Category | null>) => {
-      console.log(action.payload)
-
+    selectCategory: (state, action: RdxAction<number | null>) => {
       if (!action.payload) {
         return {
           ...state,
@@ -36,13 +41,13 @@ export const appSlice: any = createSlice({
       }
 
       const selected = state.selectedCategories.some(
-        (cat) => cat.id === action.payload?.id
+        (cat) => cat === action.payload
       );
       if (selected) {
         return {
           ...state,
           selectedCategories: state.selectedCategories.filter(
-            (cat) => cat.id !== action.payload?.id
+            (cat) => cat !== action.payload
           ),
         };
       }
@@ -57,20 +62,30 @@ export const appSlice: any = createSlice({
         return state;
       }
 
-      const newCategories = state.selectedCategories.map((cat) => {
-        return { ...cat, images: [...cat.images, action.payload] };
+      const newCategories = state.categories.map((cat) => {
+        if (state.selectedCategories.some((c) => c === cat.id)) {
+          return { ...cat, images: [...cat.images, action.payload] };
+        }
+
+        return cat;
       });
 
       return {
         ...state,
         categories: newCategories,
+        selectedCategories: [],
       };
     },
   },
 });
 
-export const { setCategories, setCurrentCategory, selectCategory, postImage } =
-  appSlice.actions;
+export const {
+  setCategories,
+  setCurrentCategory,
+  selectCategory,
+  postImage,
+  loadState,
+} = appSlice.actions;
 
 export const selectApp = (state: any) => state.app;
 
