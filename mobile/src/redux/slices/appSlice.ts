@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ExCategory } from "../../interfaces/backendTypes";
 import { RdxAction } from "../../types/reduxAction";
+import { Category, categories } from "../../data/categories";
 
 export interface AppInfo {
-  categories: ExCategory[] | null;
-  currentCategory: ExCategory | null;
+  categories: Category[];
+  currentCategory: Category | null;
   selectedCategories: string[];
 }
 
 const initialState: AppInfo = {
-  categories: null,
+  categories: categories,
   currentCategory: null,
   selectedCategories: [],
 };
@@ -18,13 +18,7 @@ export const appSlice: any = createSlice({
   name: "app",
   initialState,
   reducers: {
-    setCategories: (state, action: RdxAction<ExCategory[] | null>) => {
-      return {
-        ...state,
-        categories: action.payload,
-      };
-    },
-    setCurrentCategory: (state, action: RdxAction<ExCategory | null>) => {
+    setCurrentCategory: (state, action: RdxAction<Category | null>) => {
       return {
         ...state,
         currentCategory: action.payload,
