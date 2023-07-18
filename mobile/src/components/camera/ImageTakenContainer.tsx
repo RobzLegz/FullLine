@@ -40,9 +40,8 @@ const ImageTakenContainer: React.FC<{
 
     try {
       const asset = await MediaLibrary.createAssetAsync(image);
-      console.log(asset);
 
-      dispatch(postImage({ src: asset.uri }));
+      dispatch(postImage({ src: asset.uri, date: String(new Date()) }));
 
       setImage(null);
     } catch (error) {
@@ -56,14 +55,16 @@ const ImageTakenContainer: React.FC<{
 
   return (
     <View style={{ ...cameraContainerStyle, backgroundColor: white }}>
-      <Image
-        source={{ uri: image }}
-        style={{
-          width: "100%",
-          resizeMode: "cover",
-          height: cameraHeight ? cameraHeight : "100%",
-        }}
-      />
+      {image && (
+        <Image
+          source={{ uri: image }}
+          style={{
+            width: "100%",
+            resizeMode: "cover",
+            height: cameraHeight ? cameraHeight : "100%",
+          }}
+        />
+      )}
 
       <View style={styles.bottomContainer}>
         <View style={{ height: "100%", flex: 1 }}>

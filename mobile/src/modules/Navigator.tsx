@@ -11,6 +11,7 @@ import {
 import * as SplashScreen from "expo-splash-screen";
 import loadStateFromMMKV from "../loaders/mmkvLoader";
 import { useDispatch } from "react-redux";
+import { updateData } from "../redux/slices/appSlice";
 
 SplashScreen.preventAutoHideAsync();
 

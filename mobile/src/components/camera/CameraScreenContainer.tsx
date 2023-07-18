@@ -173,7 +173,6 @@ const CameraScreenButton: React.FC<{
             { flip: FlipType.Horizontal },
           ]);
           setImage(manipResult.uri);
-
           return;
         }
 

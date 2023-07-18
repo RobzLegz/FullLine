@@ -22,7 +22,7 @@ const CameraCategory: React.FC<Category> = ({ color, icon, title, id }) => {
       onPress={handleSelect}
     >
       <View style={styles.body}>
-        <Image source={{ uri: icon }} style={styles.icon} />
+        <Image source={icon} style={styles.icon} />
         <View
           style={{ height: 20, alignItems: "center", justifyContent: "center" }}
         >

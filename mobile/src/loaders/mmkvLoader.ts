@@ -7,7 +7,6 @@ export const mmkv = new MMKV();
 const loadStateFromMMKV = (dispatch: Dispatch) => {
   const savedState = mmkv.getString("redux-state");
   if (savedState) {
-    console.log(JSON.parse(savedState));
     dispatch(loadState(JSON.parse(savedState)));
   }
 };

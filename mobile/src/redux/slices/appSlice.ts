@@ -19,12 +19,44 @@ export const appSlice: any = createSlice({
   name: "app",
   initialState,
   reducers: {
-    loadState: (state, action: RdxAction<any>) => {
+    loadState: (state, action: RdxAction<AppInfo>) => {
       if (!action.payload) {
         return state;
       }
 
-      return action.payload;
+      let { categories } = action.payload;
+
+      const thisWeek = new Date();
+      thisWeek.setDate(new Date().getDate() - 7);
+
+      const count = categories
+        .map(
+          (c) => c.images.filter((im) => new Date(im.date) >= thisWeek).length
+        )
+        .reduce((partialSum, a) => partialSum + a, 0);
+
+      if (count > 0) {
+        categories = categories.map((cat) => {
+          const imageCount = cat.images.filter(
+            (im) => new Date(im.date) >= thisWeek
+          ).length;
+
+          const h = (imageCount / count) * 100;
+
+          console.log(h);
+
+          return {
+            ...cat,
+            height: imageCount > 0 ? h : 0,
+          };
+        });
+      }
+
+      return {
+        ...action.payload,
+        categories: categories,
+        selectedCategories: [],
+      };
     },
     setCurrentCategory: (state, action: RdxAction<Category | null>) => {
       return {
@@ -62,12 +94,34 @@ export const appSlice: any = createSlice({
         return state;
       }
 
+      const thisWeek = new Date();
+      thisWeek.setDate(new Date().getDate() - 7);
+
+      const count = state.categories
+        .map(
+          (c) => c.images.filter((im) => new Date(im.date) >= thisWeek).length
+        )
+        .reduce((partialSum, a) => partialSum + a, 0);
+
       const newCategories = state.categories.map((cat) => {
+        let rtnrCat = cat;
+
         if (state.selectedCategories.some((c) => c === cat.id)) {
-          return { ...cat, images: [...cat.images, action.payload] };
+          rtnrCat = { ...rtnrCat, images: [...cat.images, action.payload] };
         }
 
-        return cat;
+        if (count > 0) {
+          const imageCount = cat.images.filter(
+            (im) => new Date(im.date) >= thisWeek
+          ).length;
+
+          rtnrCat = {
+            ...rtnrCat,
+            height: imageCount > 0 ? (imageCount / count) * 100 : 0,
+          };
+        }
+
+        return rtnrCat;
       });
 
       return {
@@ -84,6 +138,7 @@ export const {
   setCurrentCategory,
   selectCategory,
   postImage,
+  updateData,
   loadState,
 } = appSlice.actions;
 
