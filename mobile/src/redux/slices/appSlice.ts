@@ -107,7 +107,7 @@ export const appSlice: any = createSlice({
         let rtnrCat = cat;
 
         if (state.selectedCategories.some((c) => c === cat.id)) {
-          rtnrCat = { ...rtnrCat, images: [...cat.images, action.payload] };
+          rtnrCat = { ...rtnrCat, images: [action.payload, ...cat.images] };
         }
 
         if (count > 0) {
