@@ -1,24 +1,32 @@
 import { StyleSheet, TouchableOpacity, View, Image } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import { black, white } from "../../constants/colors";
 import { Small } from "../../styles/text";
-import { useDispatch } from "react-redux";
-import { selectCategory } from "../../redux/slices/appSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  AppInfo,
+  selectApp,
+  selectCategory,
+} from "../../redux/slices/appSlice";
 import { Category } from "../../data/categories";
 
 const CameraCategory: React.FC<Category> = ({ color, icon, title, id }) => {
   const dispatch = useDispatch();
 
-  const [selected, setSelected] = useState(false);
+  const appInfo: AppInfo = useSelector(selectApp);
 
   const handleSelect = () => {
     dispatch(selectCategory(id));
-    setSelected(!selected);
   };
 
   return (
     <TouchableOpacity
-      style={{ ...styles.container, backgroundColor: selected ? color : white }}
+      style={{
+        ...styles.container,
+        backgroundColor: appInfo.selectedCategories.some((c) => c === id)
+          ? color
+          : white,
+      }}
       onPress={handleSelect}
     >
       <View style={styles.body}>
@@ -26,7 +34,14 @@ const CameraCategory: React.FC<Category> = ({ color, icon, title, id }) => {
         <View
           style={{ height: 20, alignItems: "center", justifyContent: "center" }}
         >
-          <Small style={{ fontSize: 10, color: selected ? white : black }}>
+          <Small
+            style={{
+              fontSize: 10,
+              color: appInfo.selectedCategories.some((c) => c === id)
+                ? white
+                : black,
+            }}
+          >
             {title}
           </Small>
         </View>

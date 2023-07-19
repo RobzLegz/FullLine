@@ -84,6 +84,10 @@ export const appSlice: any = createSlice({
         };
       }
 
+      if (state.selectedCategories.length > 2) {
+        return state;
+      }
+
       return {
         ...state,
         selectedCategories: [...state.selectedCategories, action.payload],
@@ -111,7 +115,7 @@ export const appSlice: any = createSlice({
         )
       );
 
-      newCategories = state.categories.map((cat) => {
+      newCategories = newCategories.map((cat) => {
         let rtnrCat = cat;
 
         if (count > 0) {

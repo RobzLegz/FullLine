@@ -37,10 +37,20 @@ const ImageTakenContainer: React.FC<{
 
   const savePicture = async () => {
     if (appInfo.selectedCategories.length === 0) {
+      Alert.alert("Please select at least one category");
+
+      return;
+    }
+
+    if (appInfo.selectedCategories.length > 3) {
+      Alert.alert("You can only select 3 categories");
+
       return;
     }
 
     if (!image) {
+      Alert.alert("Something went wrong");
+
       return;
     }
 
