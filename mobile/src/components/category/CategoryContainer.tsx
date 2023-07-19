@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AppInfo, selectApp } from "../../redux/slices/appSlice";
 import { useSelector } from "react-redux";
 import { Icon } from "./CategoryIcon";
@@ -108,11 +108,55 @@ const CategoryContainer = () => {
   );
 };
 
+const SMALL_IMAGE_SIZE = 80;
+
 const FullScreenViewer: React.FC<{
   images: FullLineImage[];
   selectedImage: string | null;
   setSelectedImage: React.Dispatch<React.SetStateAction<string | null>>;
 }> = ({ images, selectedImage, setSelectedImage }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const galleryRef = useRef<FlashList<any>>(null);
+  const thumbRef = useRef<FlashList<any>>(null);
+
+  useEffect(() => {
+    if (selectedImage) {
+      const idx = images.findIndex((im) => im.src === selectedImage);
+
+      if (idx !== 0) {
+        changeActiveIndex(idx);
+      }
+    }
+  }, []);
+
+  const changeActiveIndex = (index: number) => {
+    setActiveIndex(index);
+
+    galleryRef.current?.scrollToOffset({
+      offset: WINDOW_WIDTH * index,
+      animated: true,
+    });
+
+    if (
+      index * (SMALL_IMAGE_SIZE + 5) - SMALL_IMAGE_SIZE / 2 >
+      WINDOW_WIDTH / 2
+    ) {
+      thumbRef.current?.scrollToOffset({
+        offset:
+          index * (SMALL_IMAGE_SIZE + 5) -
+          WINDOW_WIDTH / 2 +
+          SMALL_IMAGE_SIZE / 2,
+        animated: true,
+      });
+    } else {
+      thumbRef.current?.scrollToOffset({
+        offset: 0,
+        animated: true,
+      });
+    }
+  };
+
   const ImageCard: React.FC<FullLineImage> = ({ src }) => {
     return (
       <View style={styles.fullScreenImage}>
@@ -128,9 +172,21 @@ const FullScreenViewer: React.FC<{
     );
   };
 
-  const SmallImageCard: React.FC<FullLineImage> = ({ src }) => {
+  const SmallImageCard: React.FC<FullLineImage & { index: number }> = ({
+    src,
+    index,
+  }) => {
     return (
-      <View style={{ width: 80, height: 80, borderRadius: 5, marginRight: 5 }}>
+      <TouchableOpacity
+        activeOpacity={1}
+        onPress={() => changeActiveIndex(index)}
+        style={{
+          width: SMALL_IMAGE_SIZE,
+          height: SMALL_IMAGE_SIZE,
+          borderRadius: 5,
+          marginRight: 5,
+        }}
+      >
         <Image
           source={{ uri: src }}
           style={{
@@ -138,9 +194,11 @@ const FullScreenViewer: React.FC<{
             height: "100%",
             resizeMode: "cover",
             borderRadius: 5,
+            // borderWidth: index === activeIndex ? 2 : 0,
+            // borderColor: index === activeIndex ? "white" : "transparent",
           }}
         />
-      </View>
+      </TouchableOpacity>
     );
   };
 
@@ -157,11 +215,18 @@ const FullScreenViewer: React.FC<{
         }}
       >
         <FlashList
+          ref={galleryRef}
           data={images}
           renderItem={({ item }) => <ImageCard {...item} />}
           estimatedItemSize={Math.floor(WINDOW_WIDTH)}
           showsHorizontalScrollIndicator={false}
           horizontal
+          snapToAlignment="start"
+          decelerationRate={"fast"}
+          snapToInterval={WINDOW_WIDTH}
+          onMomentumScrollEnd={(e) =>
+            Math.floor(e.nativeEvent.contentOffset.x / WINDOW_WIDTH)
+          }
         />
 
         <View
@@ -174,8 +239,11 @@ const FullScreenViewer: React.FC<{
           }}
         >
           <FlashList
+            ref={thumbRef}
             data={images}
-            renderItem={({ item }) => <SmallImageCard {...item} />}
+            renderItem={({ item, index }) => (
+              <SmallImageCard {...item} index={index} />
+            )}
             estimatedItemSize={80}
             showsHorizontalScrollIndicator={false}
             horizontal
