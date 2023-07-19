@@ -97,18 +97,22 @@ export const appSlice: any = createSlice({
       const thisWeek = new Date();
       thisWeek.setDate(new Date().getDate() - 7);
 
+      let newCategories = state.categories.map((cat) => {
+        if (state.selectedCategories.some((c) => c === cat.id)) {
+          return { ...cat, images: [action.payload, ...cat.images] };
+        }
+
+        return cat;
+      });
+
       const count = Math.max(
-        ...state.categories.map(
+        ...newCategories.map(
           (c) => c.images.filter((im) => new Date(im.date) >= thisWeek).length
         )
       );
 
-      const newCategories = state.categories.map((cat) => {
+      newCategories = state.categories.map((cat) => {
         let rtnrCat = cat;
-
-        if (state.selectedCategories.some((c) => c === cat.id)) {
-          rtnrCat = { ...rtnrCat, images: [action.payload, ...cat.images] };
-        }
 
         if (count > 0) {
           const imageCount = rtnrCat.images.filter(
