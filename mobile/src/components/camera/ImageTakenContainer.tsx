@@ -54,10 +54,12 @@ const ImageTakenContainer: React.FC<{
       return;
     }
 
-    try {
-      const asset = await MediaLibrary.createAssetAsync(image);
+    console.log(image);
 
-      dispatch(postImage({ src: asset.uri, date: String(new Date()) }));
+    try {
+      // const asset = await MediaLibrary.createAssetAsync(image);
+
+      dispatch(postImage({ src: image, date: String(new Date()) }));
 
       setImage(null);
 
