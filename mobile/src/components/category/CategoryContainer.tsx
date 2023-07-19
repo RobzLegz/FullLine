@@ -14,6 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { FlashList } from "@shopify/flash-list";
 import { FullLineImage } from "../../types/image";
+import { TopControls } from "../camera/CameraScreenContainer";
 
 const { width: WINDOW_WIDTH, height: WINDOW_HEIGHT } = Dimensions.get("window");
 
@@ -206,7 +207,7 @@ const FullScreenViewer: React.FC<{
     <View style={styles.fullScreenViewer}>
       <View
         style={{
-          width: 400,
+          width: WINDOW_WIDTH,
           minWidth: WINDOW_WIDTH,
           height: WINDOW_HEIGHT,
           minHeight: WINDOW_HEIGHT,
@@ -214,6 +215,8 @@ const FullScreenViewer: React.FC<{
           position: "relative",
         }}
       >
+        <TopControls retake={() => setSelectedImage(null)} />
+
         <FlashList
           ref={galleryRef}
           data={images}
@@ -224,9 +227,6 @@ const FullScreenViewer: React.FC<{
           snapToAlignment="start"
           decelerationRate={"fast"}
           snapToInterval={WINDOW_WIDTH}
-          onMomentumScrollEnd={(e) =>
-            Math.floor(e.nativeEvent.contentOffset.x / WINDOW_WIDTH)
-          }
         />
 
         <View
