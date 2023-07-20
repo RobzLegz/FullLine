@@ -8,7 +8,6 @@ const screenStyles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     position: "relative",
-    overflow: "hidden",
     backgroundColor: white,
   },
 });

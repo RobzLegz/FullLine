@@ -22,7 +22,7 @@ const CategoryIcon: React.FC<Category> = ({ ...props }) => {
         <Icon {...props} />
       </TouchableOpacity>
 
-      <P style={{ marginTop: 6, fontSize: 12 }}>{props.title}</P>
+      <P style={{ marginTop: 6, fontSize: 12, color: "gray" }}>{props.title}</P>
     </View>
   );
 };
@@ -47,8 +47,7 @@ export const Icon: React.FC<Category> = ({ ...props }) => {
             style={{
               width: "100%",
               backgroundColor: props.color,
-              height: 80,
-              // height: props.height * 0.8,
+              height: props.height * 0.8,
             }}
           />
         </View>
@@ -72,7 +71,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     position: "relative",
-    backgroundColor: white,
+    backgroundColor: "#FCFCFC",
     overflow: "hidden",
     shadowColor: "#000",
     shadowOffset: {

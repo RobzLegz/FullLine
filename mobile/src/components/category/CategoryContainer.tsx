@@ -1,6 +1,7 @@
 import {
   Dimensions,
   Image,
+  ScrollView,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -45,8 +46,18 @@ const CategoryContainer = () => {
           : `0${lastImageDate.getDate()}`
       }`;
 
+  if (selectedImage) {
+    return (
+      <FullScreenViewer
+        images={images}
+        selectedImage={selectedImage}
+        setSelectedImage={setSelectedImage}
+      />
+    );
+  }
+
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
@@ -96,16 +107,8 @@ const CategoryContainer = () => {
         </View>
       </View>
 
-      {selectedImage && (
-        <FullScreenViewer
-          images={images}
-          selectedImage={selectedImage}
-          setSelectedImage={setSelectedImage}
-        />
-      )}
-
       <ImageGallery images={images} setSelectedImage={setSelectedImage} />
-    </View>
+    </ScrollView>
   );
 };
 
