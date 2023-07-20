@@ -34,7 +34,7 @@ const CategoryContainer = () => {
   const lastImageDate = images.length === 0 ? null : new Date(images[0].date);
 
   const lastUpload = !lastImageDate
-    ? "None"
+    ? "-"
     : `${
         lastImageDate.getMonth() > 9
           ? lastImageDate.getMonth()
