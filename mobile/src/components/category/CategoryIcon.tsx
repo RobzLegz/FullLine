@@ -47,7 +47,8 @@ export const Icon: React.FC<Category> = ({ ...props }) => {
             style={{
               width: "100%",
               backgroundColor: props.color,
-              height: props.height * 0.8,
+              height: 80,
+              // height: props.height * 0.8,
             }}
           />
         </View>
