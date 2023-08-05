@@ -103,7 +103,9 @@ const CategoryContainer = () => {
         </View>
 
         <View style={styles.bio}>
-          <Small style={{ color: "gray", fontSize: 14 }}>{description}</Small>
+          <Small style={{ color: "gray", fontSize: 14, lineHeight: 20 }}>
+            {description}
+          </Small>
         </View>
       </View>
 

@@ -20,33 +20,41 @@ const CameraCategory: React.FC<Category> = ({ color, icon, title, id }) => {
   };
 
   return (
-    <TouchableOpacity
-      style={{
-        ...styles.container,
-        backgroundColor: appInfo.selectedCategories.some((c) => c === id)
-          ? color
-          : white,
-      }}
-      onPress={handleSelect}
+    <View
+      style={{ height: "100%", alignItems: "center", justifyContent: "center" }}
     >
-      <View style={styles.body}>
-        <Image source={icon} style={styles.icon} />
-        <View
-          style={{ height: 20, alignItems: "center", justifyContent: "center" }}
-        >
-          <Small
+      <TouchableOpacity
+        style={{
+          ...styles.container,
+          backgroundColor: appInfo.selectedCategories.some((c) => c === id)
+            ? color
+            : white,
+        }}
+        onPress={handleSelect}
+      >
+        <View style={styles.body}>
+          <Image source={icon} style={styles.icon} />
+          <View
             style={{
-              fontSize: 10,
-              color: appInfo.selectedCategories.some((c) => c === id)
-                ? white
-                : black,
+              height: 20,
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
-            {title}
-          </Small>
+            <Small
+              style={{
+                fontSize: 10,
+                color: appInfo.selectedCategories.some((c) => c === id)
+                  ? white
+                  : black,
+              }}
+            >
+              {title}
+            </Small>
+          </View>
         </View>
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </View>
   );
 };
 
