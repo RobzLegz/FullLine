@@ -1,15 +1,15 @@
 {
   "expo": {
     "name": "FullLine",
-    "slug": "FullLine",
+    "slug": "fullline",
     "version": "1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "dark",
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#0B0E11"
+      "backgroundColor": "#ffffff"
     },
     "extra": {
       "eas": {
@@ -19,6 +19,9 @@
     "owner": "sussybob",
     "android": {
       "package": "com.fulline.app"
+    },
+    "ios": {
+      "bundleIdentifier": "com.fulline.app"
     }
   }
 }

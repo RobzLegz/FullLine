@@ -81,7 +81,12 @@ const ImageTakenContainer: React.FC<{
         />
       )}
 
-      <View style={styles.bottomContainer}>
+      <View
+        style={{
+          ...styles.bottomContainer,
+          height: cameraHeight ? height - cameraHeight : 80,
+        }}
+      >
         <View style={{ height: "100%", flex: 1 }}>
           <ScrollView
             style={styles.categoryContainer}
