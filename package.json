@@ -1,17 +1,9 @@
 {
-  "name": "spotloc",
-  "version": "1.3.0",
+  "name": "fulline",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "m": "cd mobile && yarn dev",
-    "b": "cd backend && yarn dev",
-    "cms": "cd cms && yarn dev",
-    "cbs": "cd cmsserver && yarn dev",
-    "s": "cd server && yarn dev",
-    "w": "cd website && yarn dev",
-    "scrape": "cd webscraper && ./app.py",
-    "venv": "cd webscraper && python -m venv ./venv && ./venv/Scripts/activate",
-    "stu": "cd backend && prisma studio",
-    "kill": "npx kill-port 5000 && npx kill-port 8080"
+    "w": "cd website && yarn dev"
   }
 }
