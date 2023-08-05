@@ -23,7 +23,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import CameraCategory from "../category/CameraCategory";
 import IonIcon from "react-native-vector-icons/Ionicons";
-import * as MediaLibrary from "expo-media-library";
 import { useNavigation } from "@react-navigation/native";
 
 const ImageTakenContainer: React.FC<{
@@ -55,8 +54,6 @@ const ImageTakenContainer: React.FC<{
     }
 
     try {
-      // const asset = await MediaLibrary.createAssetAsync(image);
-
       dispatch(postImage({ src: image, date: String(new Date()) }));
 
       setImage(null);

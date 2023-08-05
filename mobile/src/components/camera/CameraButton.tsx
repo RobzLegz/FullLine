@@ -4,16 +4,14 @@ import { accent, gray, white } from "../../constants/colors";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import { useNavigation } from "@react-navigation/native";
 import { Camera } from "expo-camera";
-import * as MediaLibrary from "expo-media-library";
 
 const CameraButton = () => {
   const navigation = useNavigation<any>();
 
   const handleClick = useCallback(async () => {
-    const mediaStatus = await MediaLibrary.requestPermissionsAsync();
     const cameraStatus = await Camera.requestCameraPermissionsAsync();
 
-    if (cameraStatus.status === "granted" && mediaStatus.status === "granted") {
+    if (cameraStatus.status === "granted") {
       navigation.navigate("Camera");
     }
   }, []);
