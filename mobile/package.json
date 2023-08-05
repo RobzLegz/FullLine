@@ -1,6 +1,6 @@
 {
   "name": "fullline",
-  "version": "1.2.1",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "dev": "npx expo start --dev-client",

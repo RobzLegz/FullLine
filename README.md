@@ -1,19 +1,8 @@
-<a href="https://quickstack.lv"><p align="center">Developed by QuickStack.lv</a>
-
-## Tech stack
-
-| 🌐 Frontend | ⚙ Server    | 📱 App           | 🚚 Deploy  |
-| ----------- | ----------- | ---------------- | ---------- |
-| **next.js** | **Nodejs**  | **React Native** | Cloudinary |
-| **redux**   | **Express** | **Expo**         | Heroku     |
-| tailwindcss | **MongoDB** | **Redux**        | Netlify    |
-| typescript  | **Prisma**  | typescript       | AWS        |
+<a href="https://quickstack.lv"><p align="center">Developed by QuickStack.lv</p></a>
 
 ## Branches
 
-- main -> main codebase
-- website -> production website
-- server -> production server
+- main -> production
 
 ## Code of Conduct
 
