@@ -18,10 +18,13 @@
     },
     "owner": "sussybob",
     "android": {
-      "package": "com.fulline.app"
+      "package": "com.fulline.app",
+      "versionCode": 1
     },
     "ios": {
-      "bundleIdentifier": "com.fulline.app"
+      "bundleIdentifier": "com.fulline.app",
+      "buildNumber": "1",
+      "appBuildVersion": "1"
     }
   }
 }
