@@ -19,7 +19,7 @@ export const categories = [
     images: [],
     height: 0,
     description:
-      "Full trust; belief in the powers, trustworthiness, or reliability of a person or thing: We have every confidence in their ability to succeed. belief in oneself and one's powers or abilities; self-confidence; self-reliance; assurance",
+      "Share your moments of triumph and self-assurance with the Confidence category. This is the place to showcase your achievements, breakthroughs, and instances where you pushed past your comfort zone. Whether it's acing a presentation, overcoming a fear, or simply feeling empowered.",
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ export const categories = [
     images: [],
     height: 0,
     description:
-      "Intention, intent, purpose, design, aim, end, object, objective, goal mean what one intends to accomplish or attain",
+      "Have a dream or a goal you're striving for? The Goal category is where you can document your journey towards success. Share your progress, milestones, and the steps you're taking to reach your aspirations. Celebrate both big wins and small victories.",
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ export const categories = [
     images: [],
     height: 0,
     description:
-      "The reason for which something is done or created or for which something exists.",
+      "Finding your purpose in life can be a profound and fulfilling experience. In the Purpose category, share moments that align with your passions, values, and meaningful endeavors. This can include volunteering, engaging in a hobby you're passionate about, or contributing to a cause that holds a special place in your heart.",
   },
   {
     id: 4,
@@ -48,7 +48,8 @@ export const categories = [
     color: "#FE76A8",
     images: [],
     height: 0,
-    description: "",
+    description:
+      "Life is full of moments that bring balance, tranquility, and a sense of serenity. Use the Harmony category to showcase images that capture the beauty of nature, peaceful moments, or instances where you've found harmony within yourself or with others.",
   },
   {
     id: 5,
@@ -57,7 +58,8 @@ export const categories = [
     color: "#C994DC",
     images: [],
     height: 0,
-    description: "",
+    description:
+      "Spread joy and positivity with the Happiness category. Share pictures of heartwarming moments, laughter with friends, family gatherings, or any experience that brings a smile to your face.",
   },
   {
     id: 6,
@@ -66,6 +68,7 @@ export const categories = [
     color: "#FF814B",
     images: [],
     height: 0,
-    description: "",
+    description:
+      "The Awareness category is all about being present and mindful. Share images that remind you to be aware of your surroundings, emotions, and the world. This could include pictures from mindfulness practices, meditation, or moments of self-reflection that lead to a deeper understanding of yourself and the world around you.",
   },
 ];
