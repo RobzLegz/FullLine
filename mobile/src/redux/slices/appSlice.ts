@@ -43,8 +43,6 @@ export const appSlice: any = createSlice({
 
           const h = (imageCount / count) * 100;
 
-          console.log(h);
-
           return {
             ...cat,
             height: imageCount > 0 ? h : 0,

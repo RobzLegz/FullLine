@@ -54,8 +54,6 @@ const ImageTakenContainer: React.FC<{
       return;
     }
 
-    console.log(image);
-
     try {
       // const asset = await MediaLibrary.createAssetAsync(image);
 
