@@ -23,8 +23,7 @@
     },
     "ios": {
       "bundleIdentifier": "com.fulline.app",
-      "buildNumber": "2",
-      "appBuildVersion": "2"
+      "buildNumber": "2"
     }
   }
 }
