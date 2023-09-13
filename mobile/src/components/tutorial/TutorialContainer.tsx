@@ -5,8 +5,11 @@ import { slides } from "./slides";
 import Slide from "./Slide";
 import Paginator from "./Paginator";
 import NextButton from "./NextButton";
+import { useDispatch } from "react-redux";
+import { setTutorialOpen } from "../../redux/slices/appSlice";
 
 const TutorialContainer = () => {
+  const dispatch = useDispatch();
   const { width } = useWindowDimensions();
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -25,6 +28,7 @@ const TutorialContainer = () => {
 
   const handleNextPagePress = () => {
     if (currentIndex >= slides.length - 1) {
+      dispatch(setTutorialOpen(false));
       return;
     }
 

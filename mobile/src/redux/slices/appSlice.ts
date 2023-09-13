@@ -64,6 +64,12 @@ export const appSlice: any = createSlice({
         currentCategory: action.payload,
       };
     },
+    setTutorialOpen: (state, action: RdxAction<boolean>) => {
+      return {
+        ...state,
+        tutorialOpen: action.payload,
+      };
+    },
     selectCategory: (state, action: RdxAction<number | null>) => {
       if (!action.payload) {
         return {
@@ -143,6 +149,7 @@ export const appSlice: any = createSlice({
 
 export const {
   setCategories,
+  setTutorialOpen,
   setCurrentCategory,
   selectCategory,
   postImage,
