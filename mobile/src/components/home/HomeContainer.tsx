@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 import React from "react";
 import { AppInfo, selectApp } from "../../redux/slices/appSlice";
 import { useSelector } from "react-redux";
@@ -14,14 +14,16 @@ const HomeContainer = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.categoriesContainer}>
-        {appInfo.categories.map((category, index) => (
-          <CategoryIcon {...category} key={index} />
-        ))}
-      </View>
+    <View>
+      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+        <View style={styles.categoriesContainer}>
+          {appInfo.categories.map((category, index) => (
+            <CategoryIcon {...category} key={index} />
+          ))}
+        </View>
 
-      <CalendarComponent />
+        <CalendarComponent />
+      </ScrollView>
 
       <View
         style={{
@@ -44,7 +46,6 @@ export default HomeContainer;
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    alignItems: "center",
     height: "100%",
     paddingTop: 30,
   },

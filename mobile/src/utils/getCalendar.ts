@@ -1,5 +1,5 @@
 import { gray } from "../constants/colors";
-import { Category, categories } from "../data/categories";
+import { Category } from "../data/categories";
 
 export const getCalendar = (categories: Category[]) => {
   let startDate = new Date();
@@ -15,13 +15,16 @@ export const getCalendar = (categories: Category[]) => {
 
   if (images.length > 0) {
     const firstImageDate = new Date(images[0].date);
-    firstImageDate.setDate(0);
+    firstImageDate.setDate(1);
     startDate = firstImageDate;
 
     const lastImageDate = new Date(images[images.length - 1].date);
-    lastImageDate.setMonth(lastImageDate.getMonth() + 1);
-    lastImageDate.setDate(0);
-    endDate = lastImageDate;
+
+    if (lastImageDate > new Date()) {
+      lastImageDate.setMonth(lastImageDate.getMonth() + 1);
+      lastImageDate.setDate(0);
+      endDate = lastImageDate;
+    }
   }
 
   let month: { date: Date; color: string }[] = [];
@@ -30,11 +33,12 @@ export const getCalendar = (categories: Category[]) => {
     const foundImages = images.filter(
       (img) =>
         new Date(img.date).getDate() === startDate.getDate() &&
+        new Date(img.date).getMonth() === startDate.getMonth() &&
         new Date(img.date).getFullYear() === startDate.getFullYear()
     );
 
     if (foundImages.length === 0) {
-      month = [...month, { date: startDate, color: gray }];
+      month = [{ date: startDate, color: gray }, ...month];
     } else {
       let activeCategories: string[] = [];
 
@@ -50,8 +54,7 @@ export const getCalendar = (categories: Category[]) => {
       }
 
       const activeColor = findMostRepeatedString(activeCategories);
-
-      month = [...month, { date: startDate, color: activeColor }];
+      month = [{ date: startDate, color: activeColor }, ...month];
     }
 
     const nextDate = new Date(startDate);
@@ -106,3 +109,7 @@ export const monthNames = [
   "November",
   "December",
 ];
+
+export const createArray = (n: number) => {
+  return Array.from({ length: n }, () => "-");
+};
