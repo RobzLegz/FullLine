@@ -20,7 +20,18 @@ const HomeContainer = () => {
         ))}
       </View>
 
-      <CameraButton />
+      <View
+        style={{
+          position: "absolute",
+          bottom: 30,
+          left: 0,
+          width: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <CameraButton />
+      </View>
     </View>
   );
 };
@@ -33,7 +44,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     height: "100%",
-    paddingVertical: 30,
+    paddingTop: 30,
   },
   categoriesContainer: {
     width: "100%",

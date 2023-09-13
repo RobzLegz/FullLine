@@ -34,8 +34,6 @@ const Navigator = () => {
     Roboto_500Medium,
   });
 
-  console.log(getCalendar(appInfo.categories));
-
   useEffect(() => {
     if (fontsLoaded && stateLoaded.current && !splashScreenHidden.current) {
       splashScreenHidden.current = true;
