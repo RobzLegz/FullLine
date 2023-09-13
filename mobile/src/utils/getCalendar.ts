@@ -58,7 +58,7 @@ export const getCalendar = (categories: Category[]) => {
     nextDate.setDate(startDate.getDate() + 1);
 
     if (nextDate.getMonth() !== startDate.getMonth()) {
-      calendar = [...calendar, month];
+      calendar = [month, ...calendar];
       month = [];
     }
 
@@ -91,3 +91,18 @@ function findMostRepeatedString(arr: string[]) {
 
   return mostRepeatedString;
 }
+
+export const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
