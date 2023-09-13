@@ -54,6 +54,7 @@ export const getCalendar = (categories: Category[]) => {
       }
 
       const activeColor = findMostRepeatedString(activeCategories);
+      console.log(activeColor)
       month = [{ date: startDate, color: activeColor }, ...month];
     }
 

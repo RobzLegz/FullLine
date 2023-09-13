@@ -5,7 +5,7 @@ import { AppInfo, selectApp } from "../../redux/slices/appSlice";
 import { useSelector } from "react-redux";
 import { FlashList } from "@shopify/flash-list";
 import { Strong } from "../../styles/text";
-import { darkGray, white } from "../../constants/colors";
+import { darkGray, gray, white } from "../../constants/colors";
 
 const CalendarComponent = () => {
   const appInfo: AppInfo = useSelector(selectApp);
@@ -85,10 +85,7 @@ const DayView: React.FC<{
       >
         <Strong
           style={{
-            color:
-              item.color === "#6A6FF1" || item.color === "#68C8F1"
-                ? white
-                : darkGray,
+            color: item.color === gray ? darkGray : white,
           }}
         >
           {item.date.getDate()}

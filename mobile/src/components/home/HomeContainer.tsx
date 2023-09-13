@@ -14,7 +14,7 @@ const HomeContainer = () => {
   }
 
   return (
-    <View>
+    <View style={{ flex: 1, width: "100%" }}>
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.categoriesContainer}>
           {appInfo.categories.map((category, index) => (

@@ -10,21 +10,13 @@ export interface Category {
   description: string;
 }
 
-const std = new Date();
-std.setMonth(1);
-
-const testImage = {
-  src: "",
-  date: `${std}`,
-};
-
 export const categories = [
   {
     id: 1,
     title: "Confidence",
     icon: require("../../assets/icons/confidence.png"),
     color: "#68C8F1",
-    images: [testImage],
+    images: [],
     height: 0,
     description:
       "Share your moments of triumph and self-assurance with the Confidence category. This is the place to showcase your achievements, breakthroughs, and instances where you pushed past your comfort zone. Whether it's acing a presentation, overcoming a fear, or simply feeling empowered.",
