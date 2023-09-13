@@ -11,7 +11,9 @@ import {
 } from "@expo-google-fonts/roboto";
 import * as SplashScreen from "expo-splash-screen";
 import loadStateFromMMKV from "../loaders/mmkvLoader";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { AppInfo, selectApp } from "../redux/slices/appSlice";
+import TutorialScreen from "../screens/Tutorial";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -19,6 +21,8 @@ const Stack = createStackNavigator();
 
 const Navigator = () => {
   const dispatch = useDispatch();
+
+  const appInfo: AppInfo = useSelector(selectApp);
 
   const splashScreenHidden = useRef(false);
   const stateLoaded = useRef(false);
@@ -46,6 +50,18 @@ const Navigator = () => {
 
   if (!fontsLoaded) {
     return null;
+  }
+
+  if (appInfo.tutorialOpen) {
+    return (
+      <Stack.Navigator initialRouteName="Tutorial">
+        <Stack.Screen
+          name="Tutorial"
+          component={TutorialScreen}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    );
   }
 
   return (

@@ -7,12 +7,14 @@ export interface AppInfo {
   categories: Category[];
   currentCategory: Category | null;
   selectedCategories: number[];
+  tutorialOpen: boolean;
 }
 
 const initialState: AppInfo = {
   categories: categories,
   currentCategory: null,
   selectedCategories: [],
+  tutorialOpen: true,
 };
 
 export const appSlice: any = createSlice({
