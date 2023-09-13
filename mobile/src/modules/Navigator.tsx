@@ -14,6 +14,7 @@ import loadStateFromMMKV from "../loaders/mmkvLoader";
 import { useDispatch, useSelector } from "react-redux";
 import { AppInfo, selectApp } from "../redux/slices/appSlice";
 import TutorialScreen from "../screens/Tutorial";
+import { getCalendar } from "../utils/getCalendar";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -32,6 +33,8 @@ const Navigator = () => {
     Roboto_700Bold,
     Roboto_500Medium,
   });
+
+  console.log(getCalendar(appInfo.categories));
 
   useEffect(() => {
     if (fontsLoaded && stateLoaded.current && !splashScreenHidden.current) {
