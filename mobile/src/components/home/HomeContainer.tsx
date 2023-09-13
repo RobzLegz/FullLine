@@ -4,6 +4,7 @@ import { AppInfo, selectApp } from "../../redux/slices/appSlice";
 import { useSelector } from "react-redux";
 import CategoryIcon from "../category/CategoryIcon";
 import CameraButton from "../camera/CameraButton";
+import CalendarComponent from "./CalendarComponent";
 
 const HomeContainer = () => {
   const appInfo: AppInfo = useSelector(selectApp);
@@ -19,6 +20,8 @@ const HomeContainer = () => {
           <CategoryIcon {...category} key={index} />
         ))}
       </View>
+
+      <CalendarComponent />
 
       <View
         style={{
@@ -41,7 +44,6 @@ export default HomeContainer;
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    justifyContent: "space-between",
     alignItems: "center",
     height: "100%",
     paddingTop: 30,
