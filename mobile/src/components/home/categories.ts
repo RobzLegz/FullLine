@@ -17,7 +17,7 @@ export const categories = [
   {
     id: 1,
     title: "Confidence",
-    icon: require("../../assets/icons/confidence.png"),
+    icon: require("../../../assets/icons/confidence.png"),
     color: "#68C8F1",
     images: [],
     height: 0,
@@ -27,7 +27,7 @@ export const categories = [
   {
     id: 2,
     title: "Goal",
-    icon: require("../../assets/icons/goal.png"),
+    icon: require("../../../assets/icons/goal.png"),
     color: "#FFC956",
     images: [],
     height: 0,
@@ -37,7 +37,7 @@ export const categories = [
   {
     id: 3,
     title: "Purpose",
-    icon: require("../../assets/icons/purpose.png"),
+    icon: require("../../../assets/icons/purpose.png"),
     color: "#6A6FF1",
     images: [],
     height: 0,
@@ -47,7 +47,7 @@ export const categories = [
   {
     id: 4,
     title: "Harmony",
-    icon: require("../../assets/icons/harmony.png"),
+    icon: require("../../../assets/icons/harmony.png"),
     color: "#FE76A8",
     images: [],
     height: 0,
@@ -57,7 +57,7 @@ export const categories = [
   {
     id: 5,
     title: "Happiness",
-    icon: require("../../assets/icons/happiness.png"),
+    icon: require("../../../assets/icons/happiness.png"),
     color: "#C994DC",
     images: [],
     height: 0,
@@ -67,7 +67,7 @@ export const categories = [
   {
     id: 6,
     title: "Awareness",
-    icon: require("../../assets/icons/awareness.png"),
+    icon: require("../../../assets/icons/awareness.png"),
     color: "#FF814B",
     images: [],
     height: 0,

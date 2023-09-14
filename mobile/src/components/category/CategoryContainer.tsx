@@ -14,8 +14,8 @@ import { H3, Small, Strong } from "../../styles/text";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { FlashList } from "@shopify/flash-list";
-import { FullLineImage } from "../../types/image";
 import { TopControls } from "../camera/CameraScreenContainer";
+import { FullLineImage } from "../home/categories";
 
 const { width: WINDOW_WIDTH, height: WINDOW_HEIGHT } = Dimensions.get("window");
 
