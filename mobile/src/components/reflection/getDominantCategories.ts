@@ -50,6 +50,8 @@ export const getDominantCategories = (categories: Category[]) => {
       passiveValues = [...passiveValues, i];
     }
   });
+
+  return [domniantValues, passiveValues];
 };
 
 const lastMonth = new Date();
