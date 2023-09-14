@@ -15,7 +15,7 @@ import { useNavigation } from "@react-navigation/native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { FlashList } from "@shopify/flash-list";
 import { TopControls } from "../camera/CameraScreenContainer";
-import { FullLineImage } from "../home/categories";
+import { FullLineImage } from "./categories";
 
 const { width: WINDOW_WIDTH, height: WINDOW_HEIGHT } = Dimensions.get("window");
 

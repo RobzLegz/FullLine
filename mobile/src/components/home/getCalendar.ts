@@ -9,7 +9,20 @@ export const getCalendar = (categories: Category[]) => {
   endDate.setMonth(endDate.getMonth() + 1);
   endDate.setDate(1);
 
-  const images = categories.flatMap((cat) => cat.images);
+  const images = categories
+    .flatMap((cat) => cat.images)
+    .sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+
+      if (dateA < dateB) {
+        return -1;
+      }
+      if (dateA > dateB) {
+        return 1;
+      }
+      return 0;
+    });
 
   let calendar: { date: Date; color: string }[][] = [];
 
@@ -82,8 +95,8 @@ function findMostRepeatedString(arr: string[]) {
     }
   }
 
-  let mostRepeatedString = null;
-  let maxFrequency = 0;
+  let mostRepeatedString = arr[Math.floor(Math.random() * arr.length)];
+  let maxFrequency = 1;
 
   for (const [str, frequency] of stringFrequencyMap.entries()) {
     if (frequency > maxFrequency) {

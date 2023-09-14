@@ -43,7 +43,10 @@ const MonthView: React.FC<{
   return (
     <View style={{ width: "100%", marginBottom: 10 }}>
       <Strong style={{ color: darkGray, marginBottom: 4 }}>
-        {monthNames[data[0].date.getMonth()]}
+        {monthNames[data[0].date.getMonth()]}{" "}
+        {data[0].date.getFullYear() !== new Date().getFullYear()
+          ? data[0].date.getFullYear()
+          : ""}
       </Strong>
 
       <FlashList

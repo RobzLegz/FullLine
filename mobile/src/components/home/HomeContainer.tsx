@@ -2,7 +2,7 @@ import { StyleSheet, View, ScrollView } from "react-native";
 import React from "react";
 import { AppInfo, selectApp } from "../../redux/slices/appSlice";
 import { useSelector } from "react-redux";
-import CategoryIcon from "../category/CategoryIcon";
+import CategoryIcon from "./CategoryIcon";
 import CameraButton from "../camera/CameraButton";
 import CalendarComponent from "./CalendarComponent";
 
