@@ -1,5 +1,5 @@
-import { gray } from "../constants/colors";
-import { Category } from "../data/categories";
+import { gray } from "../../styles/colors";
+import { Category } from "./categories";
 
 export const getCalendar = (categories: Category[]) => {
   let startDate = new Date();

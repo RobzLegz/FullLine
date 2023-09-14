@@ -1,4 +1,7 @@
-import { FullLineImage } from "../types/image";
+export interface FullLineImage {
+  src: string;
+  date: string;
+}
 
 export interface Category {
   id: number;

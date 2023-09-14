@@ -1,6 +1,6 @@
 import { StyleSheet, Animated, View, useWindowDimensions } from "react-native";
 import React from "react";
-import { accent } from "../../constants/colors";
+import { accent } from "../../styles/colors";
 
 const Paginator: React.FC<{
   data: {

@@ -7,7 +7,7 @@ import {
   Alert,
 } from "react-native";
 import React from "react";
-import { accent, white } from "../../constants/colors";
+import { accent, white } from "../../styles/colors";
 import {
   TopControls,
   cameraContainerStyle,

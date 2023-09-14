@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback } from "react";
 import { Dimensions, View, StyleSheet, TouchableOpacity } from "react-native";
 import { Camera } from "expo-camera";
 import { MaterialIcons, Octicons, Entypo } from "@expo/vector-icons";
-import { white } from "../../constants/colors";
+import { white } from "../../styles/colors";
 import { useNavigation } from "@react-navigation/native";
 import { cameraButtonStyle } from "./CameraButton";
 import ImageTakenContainer from "./ImageTakenContainer";

@@ -1,11 +1,11 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
-import { getCalendar, monthNames, today } from "../../utils/getCalendar";
+import { getCalendar, monthNames, today } from "./getCalendar";
 import { AppInfo, selectApp } from "../../redux/slices/appSlice";
 import { useSelector } from "react-redux";
 import { FlashList } from "@shopify/flash-list";
 import { Strong } from "../../styles/text";
-import { darkGray, gray, white } from "../../constants/colors";
+import { darkGray, gray, white } from "../../styles/colors";
 
 const CalendarComponent = () => {
   const appInfo: AppInfo = useSelector(selectApp);

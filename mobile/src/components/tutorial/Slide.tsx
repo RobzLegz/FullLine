@@ -1,7 +1,7 @@
 import { StyleSheet, Image, View, useWindowDimensions } from "react-native";
 import React from "react";
 import { H3, P } from "../../styles/text";
-import { accent, darkGray } from "../../constants/colors";
+import { accent, darkGray } from "../../styles/colors";
 
 const Slide: React.FC<{
   id: string;

@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { accent } from "../../constants/colors";
+import { accent } from "../../styles/colors";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
 const NextButton: React.FC<{ onPress: () => void }> = ({ onPress }) => {

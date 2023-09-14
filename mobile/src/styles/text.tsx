@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { StyleSheet, Text } from "react-native";
-import { black, primary900, white } from "../constants/colors";
+import { black, primary900, white } from "./colors";
 
 export const Small = memo((props: any) => {
   return (

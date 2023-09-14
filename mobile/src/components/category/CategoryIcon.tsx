@@ -1,8 +1,8 @@
 import { StyleSheet, TouchableOpacity, View, Image } from "react-native";
 import React from "react";
-import { white } from "../../constants/colors";
+import { white } from "../../styles/colors";
 import { P } from "../../styles/text";
-import { Category } from "../../data/categories";
+import { Category } from "../home/categories";
 import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { setCurrentCategory } from "../../redux/slices/appSlice";
