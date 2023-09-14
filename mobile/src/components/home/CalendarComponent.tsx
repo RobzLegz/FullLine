@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
-import { getCalendar, monthNames } from "../../utils/getCalendar";
+import { getCalendar, monthNames, today } from "../../utils/getCalendar";
 import { AppInfo, selectApp } from "../../redux/slices/appSlice";
 import { useSelector } from "react-redux";
 import { FlashList } from "@shopify/flash-list";
@@ -80,7 +80,7 @@ const DayView: React.FC<{
           alignItems: "center",
           justifyContent: "center",
           borderRadius: 5,
-          opacity: item.date > new Date() ? 0.3 : 1,
+          opacity: item.date > today ? 0.3 : 1,
         }}
       >
         <Strong

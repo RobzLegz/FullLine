@@ -113,3 +113,6 @@ export const monthNames = [
 export const createArray = (n: number) => {
   return Array.from({ length: n }, () => "-");
 };
+
+export const today = new Date();
+today.setUTCHours(23, 59, 59, 999);

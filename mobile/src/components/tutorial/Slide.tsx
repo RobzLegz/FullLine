@@ -1,6 +1,7 @@
 import { StyleSheet, Image, View, useWindowDimensions } from "react-native";
 import React from "react";
 import { H3, P } from "../../styles/text";
+import { accent, darkGray } from "../../constants/colors";
 
 const Slide: React.FC<{
   id: string;
@@ -15,8 +16,10 @@ const Slide: React.FC<{
       <Image source={props.image} style={styles.image} />
 
       <View style={{ flex: 0.3, paddingTop: 10 }}>
-        <H3>{props.title}</H3>
-        <P>{props.description}</P>
+        <H3 style={{ fontSize: 28, color: accent, marginBottom: 4 }}>
+          {props.title}
+        </H3>
+        <P style={{fontSize: 18, color: darkGray}}>{props.description}</P>
       </View>
     </View>
   );
