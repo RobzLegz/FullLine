@@ -50,7 +50,7 @@ export const getDominantCategories = (categories: Category[]) => {
       passiveValues = [...passiveValues, i];
     }
   });
-
+console.log(domniantValues, passiveValues)
   return [domniantValues, passiveValues];
 };
 
