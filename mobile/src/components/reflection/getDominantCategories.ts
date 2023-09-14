@@ -1,4 +1,5 @@
 import { Category } from "../home/categories";
+import { dominant } from "./data";
 
 export const getDominantCategories = (categories: Category[]) => {
   const currentCategories = categories.map((cat) => ({
@@ -18,6 +19,8 @@ export const getDominantCategories = (categories: Category[]) => {
       )
     )
   ).length;
+
+  console.log(imageLen)
 
   if (imageLen < 7) {
     return null;
@@ -50,8 +53,23 @@ export const getDominantCategories = (categories: Category[]) => {
       passiveValues = [...passiveValues, i];
     }
   });
-console.log(domniantValues, passiveValues)
-  return [domniantValues, passiveValues];
+
+  if (!domniantValues.length && !passiveValues.length) {
+    return null;
+  }
+
+  return [
+    ...domniantValues.map((i) => ({
+      text: dominant[i],
+      icon: categories[i].icon,
+      score: 1,
+    })),
+    ...passiveValues.map((i) => ({
+      text: dominant[i],
+      icon: categories[i].icon,
+      score: 0,
+    })),
+  ];
 };
 
 const lastMonth = new Date();
