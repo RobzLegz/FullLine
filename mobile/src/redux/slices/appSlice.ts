@@ -1,18 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RdxAction } from "../../types/reduxAction";
-import { Category, categories } from "../../data/categories";
-import { FullLineImage } from "../../types/image";
+import { Category, FullLineImage, categories } from "../../components/home/categories";
+
+export interface RdxAction<T> {
+  type: string;
+  payload: T;
+}
 
 export interface AppInfo {
   categories: Category[];
   currentCategory: Category | null;
   selectedCategories: number[];
+  tutorialOpen: boolean;
 }
 
 const initialState: AppInfo = {
   categories: categories,
   currentCategory: null,
   selectedCategories: [],
+  tutorialOpen: true,
 };
 
 export const appSlice: any = createSlice({
@@ -60,6 +65,12 @@ export const appSlice: any = createSlice({
       return {
         ...state,
         currentCategory: action.payload,
+      };
+    },
+    setTutorialOpen: (state, action: RdxAction<boolean>) => {
+      return {
+        ...state,
+        tutorialOpen: action.payload,
       };
     },
     selectCategory: (state, action: RdxAction<number | null>) => {
@@ -141,6 +152,7 @@ export const appSlice: any = createSlice({
 
 export const {
   setCategories,
+  setTutorialOpen,
   setCurrentCategory,
   selectCategory,
   postImage,

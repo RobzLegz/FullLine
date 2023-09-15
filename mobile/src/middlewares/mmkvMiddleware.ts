@@ -1,5 +1,5 @@
 import { Middleware } from "@reduxjs/toolkit";
-import { mmkv } from "../loaders/mmkvLoader";
+import { mmkv } from "./mmkvLoader";
 
 export const mmkvMiddleware: Middleware = (storeApi) => (next) => (action) => {
   const result = next(action);

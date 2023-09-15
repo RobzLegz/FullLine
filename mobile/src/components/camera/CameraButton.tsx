@@ -1,6 +1,6 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
 import React, { useCallback } from "react";
-import { accent, gray, white } from "../../constants/colors";
+import { accent, gray, white } from "../../styles/colors";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import { useNavigation } from "@react-navigation/native";
 import { Camera } from "expo-camera";
