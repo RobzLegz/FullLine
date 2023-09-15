@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Category, FullLineImage, categories } from "../../components/home/categories";
+import {
+  Category,
+  FullLineImage,
+  categories,
+} from "../../components/home/categories";
+import { getDominantCategories } from "../../components/reflection/getDominantCategories";
 
 export interface RdxAction<T> {
   type: string;
@@ -11,6 +16,13 @@ export interface AppInfo {
   currentCategory: Category | null;
   selectedCategories: number[];
   tutorialOpen: boolean;
+  reflection:
+    | {
+        text: string;
+        icon: any;
+        score: number;
+      }[]
+    | null;
 }
 
 const initialState: AppInfo = {
@@ -18,6 +30,7 @@ const initialState: AppInfo = {
   currentCategory: null,
   selectedCategories: [],
   tutorialOpen: true,
+  reflection: null,
 };
 
 export const appSlice: any = createSlice({
@@ -55,10 +68,13 @@ export const appSlice: any = createSlice({
         });
       }
 
+      const data = getDominantCategories(categories);
+
       return {
         ...action.payload,
         categories: categories,
         selectedCategories: [],
+        reflection: data,
       };
     },
     setCurrentCategory: (state, action: RdxAction<Category | null>) => {
@@ -141,10 +157,13 @@ export const appSlice: any = createSlice({
         return rtnrCat;
       });
 
+      const data = getDominantCategories(newCategories);
+
       return {
         ...state,
         categories: newCategories,
         selectedCategories: [],
+        reflection: data,
       };
     },
   },
