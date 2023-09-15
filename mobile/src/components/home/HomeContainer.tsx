@@ -1,5 +1,5 @@
 import { StyleSheet, View, ScrollView, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { AppInfo, selectApp } from "../../redux/slices/appSlice";
 import { useSelector } from "react-redux";
 import CategoryIcon from "./CategoryIcon";
@@ -8,15 +8,12 @@ import CalendarComponent from "./CalendarComponent";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { accent, white } from "../../styles/colors";
 import { getDominantCategories } from "../reflection/getDominantCategories";
+import ReflectionContainer from "../reflection/ReflectionContainer";
 
 const HomeContainer = () => {
   const appInfo: AppInfo = useSelector(selectApp);
 
-  const openReflection = () => {
-    const data = getDominantCategories(appInfo.categories);
-
-    console.log(data);
-  };
+  const [reflectionOpen, setReflectionOpen] = useState(false);
 
   if (!appInfo.categories) {
     return null;
@@ -24,6 +21,10 @@ const HomeContainer = () => {
 
   return (
     <View style={{ flex: 1, width: "100%" }}>
+      {reflectionOpen && (
+        <ReflectionContainer close={() => setReflectionOpen(false)} />
+      )}
+
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.categoriesContainer}>
           {appInfo.categories.map((category, index) => (
@@ -61,7 +62,7 @@ const HomeContainer = () => {
             alignItems: "center",
             justifyContent: "center",
           }}
-          onPress={openReflection}
+          onPress={() => setReflectionOpen(true)}
         >
           <FontAwesome5 name="fire-alt" size={30} color={accent} />
         </TouchableOpacity>

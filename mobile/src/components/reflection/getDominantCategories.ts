@@ -20,8 +20,6 @@ export const getDominantCategories = (categories: Category[]) => {
     )
   ).length;
 
-  console.log(imageLen);
-
   if (imageLen < 7) {
     return null;
   }
@@ -42,7 +40,7 @@ export const getDominantCategories = (categories: Category[]) => {
         }
 
         if (count + 3 <= c) {
-          
+
           isPassive = true;
         }
       }
