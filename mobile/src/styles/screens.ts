@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { white } from "../constants/colors";
+import { white } from "./colors";
 
 const screenStyles = StyleSheet.create({
   basicScreen: {

@@ -1,6 +1,6 @@
 import { StyleSheet, TouchableOpacity, View, Image } from "react-native";
 import React from "react";
-import { black, white } from "../../constants/colors";
+import { black, white } from "../../styles/colors";
 import { Small } from "../../styles/text";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -8,7 +8,7 @@ import {
   selectApp,
   selectCategory,
 } from "../../redux/slices/appSlice";
-import { Category } from "../../data/categories";
+import { Category } from "../home/categories";
 
 const CameraCategory: React.FC<Category> = ({ color, icon, title, id }) => {
   const dispatch = useDispatch();

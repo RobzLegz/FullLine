@@ -7,7 +7,7 @@ import {
   Alert,
 } from "react-native";
 import React from "react";
-import { accent, white } from "../../constants/colors";
+import { accent, white } from "../../styles/colors";
 import {
   TopControls,
   cameraContainerStyle,
@@ -21,7 +21,7 @@ import {
   selectCategory,
 } from "../../redux/slices/appSlice";
 import { useDispatch, useSelector } from "react-redux";
-import CameraCategory from "../category/CameraCategory";
+import CameraCategory from "./CameraCategory";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 

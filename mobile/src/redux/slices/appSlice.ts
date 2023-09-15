@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RdxAction } from "../../types/reduxAction";
-import { Category, categories } from "../../data/categories";
-import { FullLineImage } from "../../types/image";
+import { Category, FullLineImage, categories } from "../../components/home/categories";
+
+export interface RdxAction<T> {
+  type: string;
+  payload: T;
+}
 
 export interface AppInfo {
   categories: Category[];

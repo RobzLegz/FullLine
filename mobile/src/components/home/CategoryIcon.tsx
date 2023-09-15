@@ -1,8 +1,8 @@
 import { StyleSheet, TouchableOpacity, View, Image } from "react-native";
 import React from "react";
-import { white } from "../../constants/colors";
+import { white } from "../../styles/colors";
 import { P } from "../../styles/text";
-import { Category } from "../../data/categories";
+import { Category } from "./categories";
 import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { setCurrentCategory } from "../../redux/slices/appSlice";
@@ -29,7 +29,7 @@ const CategoryIcon: React.FC<Category> = ({ ...props }) => {
 
 export const Icon: React.FC<Category> = ({ ...props }) => {
   return (
-    <View style={styles.category}>
+    <View style={[styles.category, { shadowColor: props.color }]}>
       <View style={styles.body}>
         <Image source={props.icon} style={styles.icon} />
       </View>
@@ -73,14 +73,15 @@ const styles = StyleSheet.create({
     position: "relative",
     backgroundColor: "#FCFCFC",
     overflow: "hidden",
-    shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 5,
+      height: 12,
     },
-    shadowOpacity: 0.36,
-    shadowRadius: 6.68,
-    elevation: 11,
+    shadowOpacity: 0.58,
+    shadowRadius: 16.00,
+    
+    elevation: 24,
+    
   },
   icon: {
     width: 50,

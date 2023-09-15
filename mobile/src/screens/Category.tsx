@@ -1,5 +1,5 @@
 import React from "react";
-import CategoryContainer from "../components/category/CategoryContainer";
+import CategoryContainer from "../components/home/CategoryContainer";
 import ScreenModule from "../modules/ScreenModule";
 
 const Category = () => {
