@@ -76,7 +76,7 @@ const ImageTakenContainer: React.FC<{
           style={{
             width: "100%",
             resizeMode: "cover",
-            height: cameraHeight ? cameraHeight : "100%",
+            height: "100%",
           }}
         />
       )}
@@ -127,10 +127,13 @@ const styles = StyleSheet.create({
   },
   bottomContainer: {
     flexDirection: "row",
-    height: cameraHeight ? height - cameraHeight : 80,
+    height: 80,
     width: "100%",
     alignItems: "center",
     justifyContent: "space-between",
+    position: "absolute",
+    bottom: 10,
+    left: 0,
   },
   sendButtonContainer: {
     width: 65,
