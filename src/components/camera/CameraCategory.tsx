@@ -43,7 +43,7 @@ const CameraCategory: React.FC<Category> = ({ color, icon, title, id }) => {
           >
             <Small
               style={{
-                fontSize: 10,
+                fontSize: 11,
                 color: appInfo.selectedCategories.some((c) => c === id)
                   ? white
                   : black,
