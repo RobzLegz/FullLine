@@ -212,10 +212,8 @@ const FullScreenViewer: React.FC<{
     <View style={styles.fullScreenViewer}>
       <View
         style={{
-          width: WINDOW_WIDTH,
-          minWidth: WINDOW_WIDTH,
-          height: WINDOW_HEIGHT,
-          minHeight: WINDOW_HEIGHT,
+          width: "100%",
+          height: "100%",
           flex: 1,
           position: "relative",
         }}
@@ -241,6 +239,7 @@ const FullScreenViewer: React.FC<{
             left: 0,
             bottom: 0,
             padding: 10,
+            height: 100,
           }}
         >
           <FlashList
@@ -357,8 +356,8 @@ const styles = StyleSheet.create({
     padding: 2,
   },
   fullScreenViewer: {
-    width: WINDOW_WIDTH,
-    height: WINDOW_HEIGHT,
+    width: "100%",
+    height: "100%",
     position: "absolute",
     top: 0,
     left: 0,

@@ -81,11 +81,14 @@ const styles = StyleSheet.create({
   },
   bottomControls: {
     width: "100%",
-    height: height - cameraHeight,
+    height: 68,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 30,
+    position: "absolute",
+    bottom: 0,
+    left: 0
   },
   cameraButtonContainer: {
     width: "100%",
