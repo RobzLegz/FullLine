@@ -84,7 +84,7 @@ const ImageTakenContainer: React.FC<{
       <View
         style={{
           ...styles.bottomContainer,
-          height: cameraHeight ? height - cameraHeight : 80,
+          height:  80,
         }}
       >
         <View style={{ height: "100%", flex: 1 }}>
