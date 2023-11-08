@@ -9,16 +9,14 @@ const ScreenModule: React.FC<{
   statusBgColor?: string;
   barStyle?: StatusBarStyle;
   bgColor?: string;
-}> = ({
-  children,
-  statusBgColor = "#000000",
-  barStyle = "light",
-}) => {
+}> = ({ children, statusBgColor = "#000000", barStyle = "light" }) => {
   return (
     <Fragment>
       <StatusBar backgroundColor={statusBgColor} style={barStyle} />
-      <SafeAreaView style={{ flex: 0, backgroundColor: statusBgColor }} />
-      <SafeAreaView style={{ flex: 1, backgroundColor: statusBgColor }}>
+      <View style={{ flex: 0, backgroundColor: statusBgColor, height: 0 }} />
+      <SafeAreaView
+        style={{ flex: 1, height: 0, backgroundColor: statusBgColor }}
+      >
         <View style={basicScreen}>{children}</View>
       </SafeAreaView>
     </Fragment>

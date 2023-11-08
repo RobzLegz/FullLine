@@ -10,7 +10,7 @@ import {
   Roboto_500Medium,
 } from "@expo-google-fonts/roboto";
 import * as SplashScreen from "expo-splash-screen";
-import loadStateFromMMKV from "../middlewares/mmkvLoader";
+// import loadStateFromMMKV from "../middlewares/mmkvLoader";
 import { useDispatch, useSelector } from "react-redux";
 import { AppInfo, selectApp } from "../redux/slices/appSlice";
 import TutorialScreen from "../screens/Tutorial";
@@ -42,7 +42,7 @@ const Navigator = () => {
 
   useEffect(() => {
     if (!stateLoaded.current) {
-      loadStateFromMMKV(dispatch);
+      // loadStateFromMMKV(dispatch);
 
       stateLoaded.current = true;
     }
