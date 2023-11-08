@@ -4,7 +4,7 @@ import ScreenModule from "../modules/ScreenModule";
 
 const Category = () => {
   return (
-    <ScreenModule>
+    <ScreenModule statusBgColor="#ffffff" barStyle="dark">
       <CategoryContainer />
     </ScreenModule>
   );

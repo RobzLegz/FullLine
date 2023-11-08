@@ -1,22 +1,27 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { basicScreen } from "../styles/screens";
 import { View } from "react-native";
-import {
-  SafeAreaProvider,
-  SafeAreaView,
-  initialWindowMetrics,
-} from "react-native-safe-area-context";
-import { StatusBar } from "expo-status-bar";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar, StatusBarStyle } from "expo-status-bar";
 
-const ScreenModule = ({ ...props }) => {
+const ScreenModule: React.FC<{
+  children?: React.ReactNode;
+  statusBgColor?: string;
+  barStyle?: StatusBarStyle;
+  bgColor?: string;
+}> = ({
+  children,
+  statusBgColor = "#000000",
+  barStyle = "light",
+}) => {
   return (
-    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-      <SafeAreaView>
-        <StatusBar style="dark" />
-
-        <View style={basicScreen}>{props.children}</View>
+    <Fragment>
+      <StatusBar backgroundColor={statusBgColor} style={barStyle} />
+      <SafeAreaView style={{ flex: 0, backgroundColor: statusBgColor }} />
+      <SafeAreaView style={{ flex: 1, backgroundColor: statusBgColor }}>
+        <View style={basicScreen}>{children}</View>
       </SafeAreaView>
-    </SafeAreaProvider>
+    </Fragment>
   );
 };
 

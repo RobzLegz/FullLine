@@ -4,7 +4,7 @@ import ScreenModule from "../modules/ScreenModule";
 
 const Home = () => {
   return (
-    <ScreenModule>
+    <ScreenModule statusBgColor="#ffffff" barStyle="dark">
       <HomeContainer />
     </ScreenModule>
   );

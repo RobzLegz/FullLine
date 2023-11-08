@@ -4,7 +4,7 @@ import ScreenModule from "../modules/ScreenModule";
 
 const TutorialScreen = () => {
   return (
-    <ScreenModule>
+    <ScreenModule statusBgColor="#ffffff" barStyle="dark">
       <TutorialContainer />
     </ScreenModule>
   );

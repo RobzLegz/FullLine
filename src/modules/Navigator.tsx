@@ -14,7 +14,6 @@ import loadStateFromMMKV from "../middlewares/mmkvLoader";
 import { useDispatch, useSelector } from "react-redux";
 import { AppInfo, selectApp } from "../redux/slices/appSlice";
 import TutorialScreen from "../screens/Tutorial";
-import { getCalendar } from "../components/home/getCalendar";
 
 SplashScreen.preventAutoHideAsync();
 
